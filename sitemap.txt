@@ -1,6 +1,6 @@
 http://example.com/2022/10/17/let%E4%B8%8Econst%E4%B8%8Evar%E6%95%B4%E7%90%86/
 http://example.com/categories/index.html
-http://example.com/repository1/index.html
+http://example.com/repository/index.html
 http://example.com/tags/index.html
 http://example.com/books/index.html
 http://example.com/links/index.html
