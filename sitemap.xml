@@ -4,7 +4,25 @@
   <url>
     <loc>http://example.com/2022/10/17/let%E4%B8%8Econst%E4%B8%8Evar%E6%95%B4%E7%90%86/</loc>
     
-    <lastmod>2022-10-17</lastmod>
+    <lastmod>2022-10-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/repository/index.html</loc>
+    
+    <lastmod>2022-10-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/about/index.html</loc>
+    
+    <lastmod>2022-10-18</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -14,15 +32,6 @@
     <loc>http://example.com/categories/index.html</loc>
     
     <lastmod>2022-10-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/repository/index.html</loc>
-    
-    <lastmod>2022-10-16</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -48,15 +57,6 @@
   
   <url>
     <loc>http://example.com/links/index.html</loc>
-    
-    <lastmod>2022-10-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/about/index.html</loc>
     
     <lastmod>2022-10-16</lastmod>
     
