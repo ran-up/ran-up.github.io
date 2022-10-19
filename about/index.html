@@ -417,7 +417,7 @@
     <div class="copyright">
         
         <div class="publishby">
-            <span id="sitetime"></span>
+            <span id="sitetime"></span> <br />
             <span id="busuanzi_container_site_pv">
                 点击<span id="busuanzi_value_site_pv" style="font-family:Courier"></span>次，
                 访客<span id="busuanzi_value_site_uv" style="font-family:Courier"></span>人
@@ -484,79 +484,10 @@
         // 因为建站时间还没有一年，就将之注释掉了。需要的可以取消
     }
     siteTime();
-
-    function siteTime() {
-        window.setTimeout("siteTime()", 1000);
-        var today = new Date();
-        var todayYear = today.getFullYear();
-        var todayMonth = today.getMonth() + 1;
-        var todayDate = today.getDate();
-        var todayHour = today.getHours();
-        var todayMinute = today.getMinutes();
-        var todaySecond = today.getSeconds();
-
-        var seconds = 1000;
-        var minutes = seconds * 60;
-        var hours = minutes * 60;
-        var days = hours * 24;
-        var mouth = function (todayYear, todayMonth) {
-            switch (todayMonth) {
-                case 1:
-                case 3:
-                case 5:
-                case 7:
-                case 8:
-                case 10:
-                case 12:
-                    return 31
-                case 2:
-                    return
-                case 4:
-                case 6:
-                case 9:
-                case 11:
-                    return 30
-            }
-        }
-        var years = days * 365;
-
-        // Date.UTC() -- 返回距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
-
-        var t1 = Date.UTC(2022, 10, 11, 15, 06, 05); //t1为建站时间
-        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
-        var diff = t2 - t1;
-
-        var diffYears = Math.floor(diff / years);
-        var diffDays = Math.floor((diff / days) - diffYears * 365);
-
-        var arr = (todayYear % 4 == 0 && todayYear % 100 != 0) || todayYear % 400 == 0 ? [31, 29, 31, 30, 31, 30,
-            31, 31, 30, 31, 30, 31
-        ] : [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        var diffMouth, index = 0
-        while (i < arr.length) {
-            return diffMouth = diffDays - arr[index] > 0 ? i++ : i + 1
-
-        }
-
-        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
-        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
-        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
-            minutes) / seconds);
-
-        var y = diffYears.toString()
-        var d = diffDays.toString().padStart(3, '0')
-        var h = diffHours.toString().padStart(2, '0')
-        var m = diffMinutes.toString().padStart(2, '0')
-        var s = diffSeconds.toString().padStart(2, '0')
-
-        document.getElementById("sitetime").innerHTML = `已运行：${y}-${d} ${h}:${m}:${s}`
-        // 因为建站时间还没有一年，就将之注释掉了。需要的可以取消
-    }
-    siteTime();
 </script>
   <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
 <script>
-window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+   window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 </script>
 
 <script src="/js/plugin.min.js"></script>
@@ -624,5 +555,54 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 
 
 
+
+<!-- 回到顶部 -->
+<style type="text/css">
+   #go-top {
+      width: 40px;
+      height: 36px;
+      background-color: #DDA0DD;
+      position: relative;
+      border-radius: 2px;
+      position: fixed;
+      right: 10px;
+      bottom: 60px;
+      cursor: pointer;
+      display: none;
+   }
+
+   #go-top:after {
+      content: " ";
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      border-top: 2px solid #fff;
+      border-right: 2px solid #fff;
+      width: 12px;
+      height: 12px;
+      transform: rotate(-45deg);
+   }
+
+   #go-top:hover {
+      background-color: #8A2BE2;
+   }
+</style>
+
+<div id="go-top"></div>
+
+<script>
+   $(function () {
+      var top = $("#go-top");
+      $(window).scroll(function () {
+         ($(window).scrollTop() > 300) ? top.show(300): top.hide(200);
+         $("#go-top").click(function () {
+            $('body,html').animate({
+               scrollTop: 0
+            });
+            return false();
+         })
+      });
+   });
+</script>
 </body>
 </html>

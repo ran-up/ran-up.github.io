@@ -85,7 +85,7 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2022-10-18</lastmod>
+    <lastmod>2022-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -93,7 +93,7 @@
   
   <url>
     <loc>http://example.com/tags/es6/</loc>
-    <lastmod>2022-10-18</lastmod>
+    <lastmod>2022-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -102,7 +102,7 @@
   
   <url>
     <loc>http://example.com/categories/JavaScript/</loc>
-    <lastmod>2022-10-18</lastmod>
+    <lastmod>2022-10-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

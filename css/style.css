@@ -9207,6 +9207,11 @@ body.okayNav-loaded {
   }
 }
 
+/* 隐藏valine版权信息 */
+.txt-right{
+  display: none;
+}
+
 @media (max-device-width: 480px) and (orientation: landscape) {
   .navbar-fixed-top .navbar-collapse,
   .navbar-fixed-bottom .navbar-collapse {
