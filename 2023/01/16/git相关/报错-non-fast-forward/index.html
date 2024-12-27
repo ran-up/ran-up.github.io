@@ -18,12 +18,12 @@
   
   
   <title>报错:non-fast-forward | 前端笔记收纳</title>
-  <meta name="description" content="简介 当我进行 git pull origin dev 时，报的错是： PS E:\company&gt; git pushTo push the current branch and set the remote as upstream, use    git push --set-upstream origin devTo have this happen automatically for">
+  <meta name="description" content="简介当我进行 git pull origin dev 时，报的错是： PS E:\company&gt; git pushTo push the current branch and set the remote as upstream, use    git push --set-upstream origin devTo have this happen automatically for b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="报错:non-fast-forward">
 <meta property="og:url" content="http://ran-up.github.io/2023/01/16/git%E7%9B%B8%E5%85%B3/%E6%8A%A5%E9%94%99-non-fast-forward/index.html">
 <meta property="og:site_name" content="ranup前端笔记汇总">
-<meta property="og:description" content="简介 当我进行 git pull origin dev 时，报的错是： PS E:\company&gt; git pushTo push the current branch and set the remote as upstream, use    git push --set-upstream origin devTo have this happen automatically for">
+<meta property="og:description" content="简介当我进行 git pull origin dev 时，报的错是： PS E:\company&gt; git pushTo push the current branch and set the remote as upstream, use    git push --set-upstream origin devTo have this happen automatically for b">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://ran-up.github.io/images/git%E7%9B%B8%E5%85%B3/non-fast-forward.png">
 <meta property="article:published_time" content="2023-01-16T03:04:48.000Z">
@@ -409,12 +409,12 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="简介">简介</h2>
-<p>当我进行 git pull origin dev 时，报的错是：</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>当我进行 git pull origin dev 时，报的错是：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable constant_">PS</span> <span class="attr">E</span>:\company&gt; git push</span><br><span class="line"><span class="title class_">To</span> push the current branch and set the remote <span class="keyword">as</span> upstream, use</span><br><span class="line"></span><br><span class="line">    git push --set-upstream origin dev</span><br><span class="line"></span><br><span class="line"><span class="title class_">To</span> have <span class="variable language_">this</span> happen automatically <span class="keyword">for</span> branches without a tracking</span><br><span class="line">upstream, see <span class="string">&#x27;push.autoSetupRemote&#x27;</span> <span class="keyword">in</span> <span class="string">&#x27;git help config&#x27;</span>.</span><br><span class="line"></span><br><span class="line"><span class="title class_">To</span> <span class="attr">https</span>:<span class="comment">//gitee.com/xxx</span></span><br><span class="line"> ! [rejected]        dev -&gt; dev (non-fast-forward)</span><br><span class="line"><span class="attr">error</span>: failed to push some refs to <span class="string">&#x27;https://gitee.com/xxx&#x27;</span></span><br><span class="line"><span class="attr">hint</span>: its remote counterpart. <span class="title class_">Integrate</span> the remote changes (e.<span class="property">g</span>.</span><br><span class="line"><span class="attr">hint</span>: <span class="string">&#x27;git pull ...&#x27;</span>) before pushing again.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <img src="/images/git相关/non-fast-forward.png" alt="">
-<h2 id="解决方案">解决方案</h2>
-<p>其实这个就是我们使用的新建的分支，而这个分支中的内容和 master 中的内容没有合并，所以造成的这个内容。</p>
+
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>其实这个就是我们使用的新建的分支，而这个分支中的内容和 master 中的内容没有合并，所以造成的这个内容。</p>
 <p>我这里是 dve 推送，所以合并 master 的内容 ：git dev master</p>
 <p>然后在推送：git pull origin dev</p>
 

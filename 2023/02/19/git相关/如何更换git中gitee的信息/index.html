@@ -18,12 +18,12 @@
   
   
   <title>如何更换git中gitee的信息 | 前端笔记收纳</title>
-  <meta name="description" content="简介 有时候我们可能需要在公司和私人之间进行git中gitee的账号信息切换。 然后，这里给自己记一个笔记，防止后期遗忘。 切换方法 替换全局的user和email  查看项目git信息   输入: git config --global --list 查看全局的git信息  如果只是想查看当前项目的git信息，可以去掉其中的 --global  如果与刚才的信息不符合，则使用下面的命令修改">
+  <meta name="description" content="简介有时候我们可能需要在公司和私人之间进行git中gitee的账号信息切换。 然后，这里给自己记一个笔记，防止后期遗忘。 切换方法替换全局的user和email 查看项目git信息   输入: git config --global --list 查看全局的git信息  如果只是想查看当前项目的git信息，可以去掉其中的 –global  如果与刚才的信息不符合，则使用下面的命令修改   修改用户">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何更换git中gitee的信息">
 <meta property="og:url" content="http://ran-up.github.io/2023/02/19/git%E7%9B%B8%E5%85%B3/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%8D%A2git%E4%B8%ADgitee%E7%9A%84%E4%BF%A1%E6%81%AF/index.html">
 <meta property="og:site_name" content="ranup前端笔记汇总">
-<meta property="og:description" content="简介 有时候我们可能需要在公司和私人之间进行git中gitee的账号信息切换。 然后，这里给自己记一个笔记，防止后期遗忘。 切换方法 替换全局的user和email  查看项目git信息   输入: git config --global --list 查看全局的git信息  如果只是想查看当前项目的git信息，可以去掉其中的 --global  如果与刚才的信息不符合，则使用下面的命令修改">
+<meta property="og:description" content="简介有时候我们可能需要在公司和私人之间进行git中gitee的账号信息切换。 然后，这里给自己记一个笔记，防止后期遗忘。 切换方法替换全局的user和email 查看项目git信息   输入: git config --global --list 查看全局的git信息  如果只是想查看当前项目的git信息，可以去掉其中的 –global  如果与刚才的信息不符合，则使用下面的命令修改   修改用户">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://ran-up.github.io/images/git%E7%9B%B8%E5%85%B3/%E4%BF%AE%E6%94%B9git%E4%BF%A1%E6%81%AF/1.png">
 <meta property="og:image" content="http://ran-up.github.io/images/git%E7%9B%B8%E5%85%B3/%E4%BF%AE%E6%94%B9git%E4%BF%A1%E6%81%AF/2.png">
@@ -414,18 +414,15 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="简介">简介</h2>
-<p>有时候我们可能需要在公司和私人之间进行git中gitee的账号信息切换。</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>有时候我们可能需要在公司和私人之间进行git中gitee的账号信息切换。</p>
 <p>然后，这里给自己记一个笔记，防止后期遗忘。</p>
-<h2 id="切换方法">切换方法</h2>
-<h2 id="替换全局的user和email">替换全局的user和email</h2>
-<ol>
+<h2 id="切换方法"><a href="#切换方法" class="headerlink" title="切换方法"></a>切换方法</h2><h2 id="替换全局的user和email"><a href="#替换全局的user和email" class="headerlink" title="替换全局的user和email"></a>替换全局的user和email</h2><ol>
 <li>查看项目git信息</li>
 </ol>
 <ul>
 <li>输入: <code>git config --global --list</code> 查看全局的git信息</li>
 </ul>
-<p>如果只是想查看当前项目的git信息，可以去掉其中的 --global</p>
+<p>如果只是想查看当前项目的git信息，可以去掉其中的 –global</p>
 <ol start="2">
 <li>如果与刚才的信息不符合，则使用下面的命令修改</li>
 </ol>
@@ -433,8 +430,7 @@
 <li>修改用户名：<code>git config --global user.name &quot;新用户名&quot;</code></li>
 <li>修改邮箱：<code>git config --global user.email &quot;新邮箱&quot;</code></li>
 </ul>
-<h3 id="清除之前在git中设置的gitee信息">清除之前在git中设置的gitee信息</h3>
-<ol>
+<h3 id="清除之前在git中设置的gitee信息"><a href="#清除之前在git中设置的gitee信息" class="headerlink" title="清除之前在git中设置的gitee信息"></a>清除之前在git中设置的gitee信息</h3><ol>
 <li>打开 windows 凭据</li>
 </ol>
 <ul>
@@ -443,16 +439,18 @@
 </ul>
 <img src="/images/git相关/修改git信息/1.png" alt="">
 <img src="/images/git相关/修改git信息/2.png" alt="">
+
 <ol start="2">
 <li>点击：<code>git.https://gitee.com</code></li>
 </ol>
 <img src="/images/git相关/修改git信息/3.png" alt="">
+
 <ol start="3">
 <li>点击弹出的删除选项</li>
 </ol>
 <img src="/images/git相关/修改git信息/4.png" alt="">
-<h3 id="设置git中的gitee信息">设置git中的gitee信息</h3>
-<ol>
+
+<h3 id="设置git中的gitee信息"><a href="#设置git中的gitee信息" class="headerlink" title="设置git中的gitee信息"></a>设置git中的gitee信息</h3><ol>
 <li>绑定gitee的远程仓库，输入：<code>git remote add origin 远程仓库地址</code></li>
 </ol>
 <p>其中的 origin 是远程仓库的重命名名称。</p>
@@ -464,15 +462,17 @@
 </ol>
 <p>就是自己在gitee中的邮箱和密码。</p>
 <img src="/images/git相关/修改git信息/5.png" alt="">
+
 <ol start="3">
 <li>成功</li>
 </ol>
 <p>如果出现这样的信息就是成功了。</p>
 <img src="/images/git相关/修改git信息/6.png" alt="">
+
+
 <p>这里我是同时上传到gitee和github的，所以后面需要跟上相对于的仓库别名。</p>
 <p>如果想像我这样同时上传到gitee和github中，可以看我的另一个博客内容。</p>
-<h2 id="注意事项">注意事项</h2>
-<p>如果直接在windows 凭据中修改邮箱地址，是无效的（信息没有更新），因为没有修改掉c盘中ssh的信息。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>如果直接在windows 凭据中修改邮箱地址，是无效的（信息没有更新），因为没有修改掉c盘中ssh的信息。</p>
 
       
     </div>

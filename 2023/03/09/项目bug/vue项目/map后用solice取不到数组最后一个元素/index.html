@@ -18,12 +18,12 @@
   
   
   <title>map后用solice取不到数组最后一个元素 | 前端笔记收纳</title>
-  <meta name="description" content="简介 今天对数组使用slice取出需要的值后，再用map进行遍历循环，最后使用splice将数组中的值分批取出， 又因为数组中的数据比较多，所以又在splice外面加了一个map循环。然后出现的问题是：只能取到数组前三者的值 从而合为一个数组。然后最后一个值，是后面输出的。（总共是12个数据，使用splice取，分成4个数组，每个数组包含3个元素） 然后就搞了很久，反正是知道是splice这里的问">
+  <meta name="description" content="简介今天对数组使用slice取出需要的值后，再用map进行遍历循环，最后使用splice将数组中的值分批取出， 又因为数组中的数据比较多，所以又在splice外面加了一个map循环。然后出现的问题是：只能取到数组前三者的值 从而合为一个数组。然后最后一个值，是后面输出的。（总共是12个数据，使用splice取，分成4个数组，每个数组包含3个元素） 然后就搞了很久，反正是知道是splice这里的问题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="map后用solice取不到数组最后一个元素">
 <meta property="og:url" content="http://ran-up.github.io/2023/03/09/%E9%A1%B9%E7%9B%AEbug/vue%E9%A1%B9%E7%9B%AE/map%E5%90%8E%E7%94%A8solice%E5%8F%96%E4%B8%8D%E5%88%B0%E6%95%B0%E7%BB%84%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0/index.html">
 <meta property="og:site_name" content="ranup前端笔记汇总">
-<meta property="og:description" content="简介 今天对数组使用slice取出需要的值后，再用map进行遍历循环，最后使用splice将数组中的值分批取出， 又因为数组中的数据比较多，所以又在splice外面加了一个map循环。然后出现的问题是：只能取到数组前三者的值 从而合为一个数组。然后最后一个值，是后面输出的。（总共是12个数据，使用splice取，分成4个数组，每个数组包含3个元素） 然后就搞了很久，反正是知道是splice这里的问">
+<meta property="og:description" content="简介今天对数组使用slice取出需要的值后，再用map进行遍历循环，最后使用splice将数组中的值分批取出， 又因为数组中的数据比较多，所以又在splice外面加了一个map循环。然后出现的问题是：只能取到数组前三者的值 从而合为一个数组。然后最后一个值，是后面输出的。（总共是12个数据，使用splice取，分成4个数组，每个数组包含3个元素） 然后就搞了很久，反正是知道是splice这里的问题">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://ran-up.github.io/images/%E9%A1%B9%E7%9B%AEbug/vue%E9%A1%B9%E7%9B%AE/map%E5%90%8E%E7%94%A8solice%E5%8F%96%E4%B8%8D%E5%88%B0%E6%95%B0%E7%BB%84%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0/1.png">
 <meta property="og:image" content="http://ran-up.github.io/images/%E9%A1%B9%E7%9B%AEbug/vue%E9%A1%B9%E7%9B%AE/map%E5%90%8E%E7%94%A8solice%E5%8F%96%E4%B8%8D%E5%88%B0%E6%95%B0%E7%BB%84%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0/2.png">
@@ -412,24 +412,27 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="简介">简介</h2>
-<p>今天对数组使用slice取出需要的值后，再用map进行遍历循环，最后使用splice将数组中的值分批取出，</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>今天对数组使用slice取出需要的值后，再用map进行遍历循环，最后使用splice将数组中的值分批取出，</p>
 <p>又因为数组中的数据比较多，所以又在splice外面加了一个map循环。然后出现的问题是：只能取到数组前三者的值</p>
 <p>从而合为一个数组。然后最后一个值，是后面输出的。（总共是12个数据，使用splice取，分成4个数组，每个数组包含3个元素）</p>
 <p>然后就搞了很久，反正是知道是splice这里的问题。因为我单独拿出来也是取不到最后一个值的。</p>
 <p>之前的完整数据：</p>
 <img src="/images/项目bug/vue项目/map后用solice取不到数组最后一个元素/1.png" alt="">
+
 <p>进行上面操作之后的数据：</p>
 <img src="/images/项目bug/vue项目/map后用solice取不到数组最后一个元素/2.png" alt="">
+
 <p>单独将splice数据拿出来：</p>
 <img src="/images/项目bug/vue项目/map后用solice取不到数组最后一个元素/3.png" alt="">
+
 <p>现在知道了问题，然后我们就可以对齐下手，然后找了很久，就试着使用了原生的for循环，结果成了，哈哈哈。</p>
 <p>在这里记录一下，给自己弄个备份，也给遇到这个问题的小伙伴一个解决问题的参考。</p>
-<h2 id="解决办法">解决办法</h2>
-<p>后面我就没有使用map+splice的方法了，而是使用的传统for循环来进行循环输出。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>后面我就没有使用map+splice的方法了，而是使用的传统for循环来进行循环输出。</p>
 <p>前提是你要知道你需要循环的次数，而这里我恰好可以算出来。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// slice是取出这个范围的数据，map是将这些属性进行相同的操作（循环遍历）</span></span><br><span class="line"> wechatDataArr.<span class="title function_">slice</span>(<span class="number">1</span>, wechatDataArr.<span class="property">length</span> - <span class="number">2</span>).<span class="title function_">map</span>(<span class="function">(<span class="params">wechatItem, index, wechatArr</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 将遍历取出的数据托送到这个新的数组中</span></span><br><span class="line">    <span class="keyword">const</span> adminImgDataList = []</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = wechatArr.<span class="property">length</span> / <span class="number">3</span>; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        adminImgDataList.<span class="title function_">push</span>(wechatArr.<span class="title function_">splice</span>(<span class="number">0</span>, <span class="number">3</span>))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(adminImgDataList)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <img src="/images/项目bug/vue项目/map后用solice取不到数组最后一个元素/4.png" alt="">
+
 <p>然后就成功的解决了，完结。撒花~~~~</p>
 
       

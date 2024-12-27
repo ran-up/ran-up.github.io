@@ -18,12 +18,12 @@
   
   
   <title>微信小程序使用vantweapp问题 | 前端笔记收纳</title>
-  <meta name="description" content="构建错误 今天用微信小程序配合 Vant Weapp 时遇到了一些问题。 就是在【构建npm】时一直不成功，错误是：  导致这样的原因是，先安装的第三方包，然后再进行的初始化。 解决办法就是，先初始化，然后再安装第三方包，就可以了。 也就是顺序是：   初始化：npm init，连续回车就行 – 生成 package.json   安装第三方包：npm i vant-weapp -S --prod">
+  <meta name="description" content="构建错误今天用微信小程序配合 Vant Weapp 时遇到了一些问题。 就是在【构建npm】时一直不成功，错误是：   导致这样的原因是，先安装的第三方包，然后再进行的初始化。 解决办法就是，先初始化，然后再安装第三方包，就可以了。 也就是顺序是：  初始化：npm init，连续回车就行 – 生成 package.json  安装第三方包：npm i vant-weapp -S --produc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信小程序使用vantweapp问题">
 <meta property="og:url" content="http://ran-up.github.io/2022/11/25/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BD%BF%E7%94%A8npm%E6%9E%84%E5%BB%BA%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="ranup前端笔记汇总">
-<meta property="og:description" content="构建错误 今天用微信小程序配合 Vant Weapp 时遇到了一些问题。 就是在【构建npm】时一直不成功，错误是：  导致这样的原因是，先安装的第三方包，然后再进行的初始化。 解决办法就是，先初始化，然后再安装第三方包，就可以了。 也就是顺序是：   初始化：npm init，连续回车就行 – 生成 package.json   安装第三方包：npm i vant-weapp -S --prod">
+<meta property="og:description" content="构建错误今天用微信小程序配合 Vant Weapp 时遇到了一些问题。 就是在【构建npm】时一直不成功，错误是：   导致这样的原因是，先安装的第三方包，然后再进行的初始化。 解决办法就是，先初始化，然后再安装第三方包，就可以了。 也就是顺序是：  初始化：npm init，连续回车就行 – 生成 package.json  安装第三方包：npm i vant-weapp -S --produc">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://ran-up.github.io/images/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E4%BD%BF%E7%94%A8vantweapp%E9%97%AE%E9%A2%98/%E6%9E%84%E5%BB%BA%E9%97%AE%E9%A2%98.png">
 <meta property="og:image" content="http://ran-up.github.io/images/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E4%BD%BF%E7%94%A8vantweapp%E9%97%AE%E9%A2%98/%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98.png">
@@ -402,40 +402,36 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="构建错误">构建错误</h2>
-<p>今天用微信小程序配合 <a target="_blank" rel="noopener" href="https://vant-contrib.gitee.io/vant-weapp/#/home">Vant Weapp</a> 时遇到了一些问题。</p>
+        <h2 id="构建错误"><a href="#构建错误" class="headerlink" title="构建错误"></a>构建错误</h2><p>今天用微信小程序配合 <a target="_blank" rel="noopener" href="https://vant-contrib.gitee.io/vant-weapp/#/home">Vant Weapp</a> 时遇到了一些问题。</p>
 <p>就是在【构建npm】时一直不成功，错误是：</p>
 <img src="/images/微信小程序/使用vantweapp问题/构建问题.png" alt="">
+
 <p>导致这样的原因是，先安装的第三方包，然后再进行的初始化。</p>
 <p>解决办法就是，先初始化，然后再安装第三方包，就可以了。</p>
 <p>也就是顺序是：</p>
 <ol>
-<li>
-<p>初始化：<code>npm init</code>，连续回车就行 – 生成 package.json</p>
+<li><p>初始化：<code>npm init</code>，连续回车就行 – 生成 package.json</p>
 </li>
-<li>
-<p>安装第三方包：<code>npm i vant-weapp -S --production</code> – 自动生成 node_modules文件夹</p>
+<li><p>安装第三方包：<code>npm i vant-weapp -S --production</code> – 自动生成 node_modules文件夹</p>
 </li>
-<li>
-<p>修改 app.json：将 app.json 中的 “style”: “v2” 去除</p>
+<li><p>修改 app.json：将 app.json 中的 “style”: “v2” 去除</p>
 </li>
-<li>
-<p>修改 project.config.json：</p>
-</li>
-</ol>
+<li><p>修改 project.config.json：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="string">&quot;setting&quot;</span>: &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="string">&quot;packNpmManually&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;packNpmRelationList&quot;</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="string">&quot;packageJsonPath&quot;</span>: <span class="string">&quot;./package.json&quot;</span>,</span><br><span class="line">        <span class="string">&quot;miniprogramNpmDistDir&quot;</span>: <span class="string">&quot;./miniprogram/&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>构建npm：工具 -&gt; 构建 npm</li>
+</li>
+<li><p>构建npm：工具 -&gt; 构建 npm</p>
+</li>
 </ol>
-<p>**注意：**需要在小程序根目录下执行 <code>npm init</code></p>
+<p><strong>注意：</strong>需要在小程序根目录下执行 <code>npm init</code></p>
 <p>这几步缺一不可，不然就不能使用 vant Weapp 中的组件了。</p>
 <p>其中的2-3步可以去<a target="_blank" rel="noopener" href="https://vant-contrib.gitee.io/vant-weapp/#/quickstart#bu-zou-san-xiu-gai-project.config.json">官网</a>看。</p>
-<h2 id="路径错误">路径错误</h2>
-<p>如果你按照 <a target="_blank" rel="noopener" href="https://vant-contrib.gitee.io/vant-weapp/#/home">Vant Weapp</a> 官网的方法使用某个组件，路径什么的，代码什么的都没错，但就是报错，还是路径错误。比如：</p>
+<h2 id="路径错误"><a href="#路径错误" class="headerlink" title="路径错误"></a>路径错误</h2><p>如果你按照 <a target="_blank" rel="noopener" href="https://vant-contrib.gitee.io/vant-weapp/#/home">Vant Weapp</a> 官网的方法使用某个组件，路径什么的，代码什么的都没错，但就是报错，还是路径错误。比如：</p>
 <img src="/images/微信小程序/使用vantweapp问题/路径问题.png" alt="">
+
 <p>这个时候其实就是自己的操作问题（我目前遇到的是，现在是2022.11.25），时间久了问题会变，这个操作不能保证一定能解决问题。不过可以试试。 — 就是没有在工具中构建npm</p>
 <p>如果你完全按照上面的步骤来实现npm的建构的话，那会生成一个文件夹，如下：</p>
 <img src="/images/微信小程序/使用vantweapp问题/生成文件夹.png" alt="">
+
 <p>如果没有的话，就将 package.json 文件和 node_modules文件夹 都删除了，之后重新按照上面的步骤构建npm，<strong>切记</strong>最后不要忘记再次在工具中构建npm。</p>
 <p>因为，不构建npm，就不会生成 miniprogram_npm 文件夹，也就会路径报错了。</p>
 
