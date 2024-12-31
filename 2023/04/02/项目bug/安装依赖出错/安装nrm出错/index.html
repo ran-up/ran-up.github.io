@@ -18,12 +18,12 @@
   
   
   <title>安装nrm出错 | 前端笔记收纳</title>
-  <meta name="description" content="简介 很多时候安装依赖都报： npm ERR! code E404npm ERR! 404 Not Found - GET https:&#x2F;&#x2F;registry.npmjs.org&#x2F;uni-id - Not found 这就很烦，然后正好看到一个这方面的依赖包 —&gt; nrm 就想着下载一个，npm i nrm -g 的过程没什么问题，但使用 nrm ls 有问题 报错为：  解决办法 在网上找了">
+  <meta name="description" content="简介很多时候安装依赖都报： npm ERR! code E404npm ERR! 404 Not Found - GET https:&#x2F;&#x2F;registry.npmjs.org&#x2F;uni-id - Not found  这就很烦，然后正好看到一个这方面的依赖包 —&gt; nrm 就想着下载一个，npm i nrm -g 的过程没什么问题，但使用 nrm ls 有问题 报错为：   解决办法在网上找了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安装nrm出错">
 <meta property="og:url" content="http://ran-up.github.io/2023/04/02/%E9%A1%B9%E7%9B%AEbug/%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%87%BA%E9%94%99/%E5%AE%89%E8%A3%85nrm%E5%87%BA%E9%94%99/index.html">
 <meta property="og:site_name" content="ranup前端笔记汇总">
-<meta property="og:description" content="简介 很多时候安装依赖都报： npm ERR! code E404npm ERR! 404 Not Found - GET https:&#x2F;&#x2F;registry.npmjs.org&#x2F;uni-id - Not found 这就很烦，然后正好看到一个这方面的依赖包 —&gt; nrm 就想着下载一个，npm i nrm -g 的过程没什么问题，但使用 nrm ls 有问题 报错为：  解决办法 在网上找了">
+<meta property="og:description" content="简介很多时候安装依赖都报： npm ERR! code E404npm ERR! 404 Not Found - GET https:&#x2F;&#x2F;registry.npmjs.org&#x2F;uni-id - Not found  这就很烦，然后正好看到一个这方面的依赖包 —&gt; nrm 就想着下载一个，npm i nrm -g 的过程没什么问题，但使用 nrm ls 有问题 报错为：   解决办法在网上找了">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://ran-up.github.io/images/%E9%A1%B9%E7%9B%AEbug/vue%E9%A1%B9%E7%9B%AE/%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%87%BA%E9%94%99/1.png">
 <meta property="og:image" content="http://ran-up.github.io/images/%E9%A1%B9%E7%9B%AEbug/vue%E9%A1%B9%E7%9B%AE/%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%87%BA%E9%94%99/2.png">
@@ -400,7 +400,7 @@
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2023/04/02/%E9%A1%B9%E7%9B%AEbug/%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%87%BA%E9%94%99/%E5%AE%89%E8%A3%85nrm%E5%87%BA%E9%94%99/#comments" class="article-comment-link">评论</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 156(字)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 162(字)</span>
 	
 	
 		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 1(分)</span>
@@ -410,17 +410,18 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="简介">简介</h2>
-<p>很多时候安装依赖都报：</p>
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>很多时候安装依赖都报：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm <span class="variable constant_">ERR</span>! code <span class="variable constant_">E404</span></span><br><span class="line">npm <span class="variable constant_">ERR</span>! <span class="number">404</span> <span class="title class_">Not</span> <span class="title class_">Found</span> - <span class="variable constant_">GET</span> <span class="attr">https</span>:<span class="comment">//registry.npmjs.org/uni-id - Not found</span></span><br></pre></td></tr></table></figure>
+
 <p>这就很烦，然后正好看到一个这方面的依赖包 —&gt; nrm</p>
 <p>就想着下载一个，npm i nrm -g 的过程没什么问题，但使用 nrm ls 有问题</p>
 <p>报错为：</p>
 <img src="/images/项目bug/vue项目/安装依赖出错/1.png" alt="">
-<h2 id="解决办法">解决办法</h2>
-<p>在网上找了些答案，然后花了很多时间，这里备份一下，然后也可以帮大家节约时间。</p>
-<p>这里可以使用：npm i nrm -g open@8.4.2</p>
+
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>在网上找了些答案，然后花了很多时间，这里备份一下，然后也可以帮大家节约时间。</p>
+<p>这里可以使用：npm i nrm -g <a href="mailto:&#x6f;&#x70;&#x65;&#x6e;&#x40;&#56;&#x2e;&#52;&#46;&#50;">&#x6f;&#x70;&#x65;&#x6e;&#x40;&#56;&#x2e;&#52;&#46;&#50;</a></p>
 <img src="/images/项目bug/vue项目/安装依赖出错/2.png" alt="">
+
 <p>然后就可以安装并使用成功了。</p>
 <p>后面使用 nrm ls 也可以成功。</p>
 
