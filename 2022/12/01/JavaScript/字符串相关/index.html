@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang=zh>
+  <head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>字符串相关 | 前端笔记收纳</title>
+  <meta name="description" content="原生charAt() 返回给定索引位置的字符。  友情提示，索引从0开始的。   let msg &#x3D; &quot;abcd&quot;;console.log(msg.charAt(2)); &#x2F;&#x2F; &quot;c&quot;  charCodeAt() 查看指定码元的字符编码。  如果想把很多的字符都正确的转换为对应的码点，那可以使用 codePointAt() let msg &#x3D; &quot;a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符串相关">
+<meta property="og:url" content="http://ran-up.github.io/2022/12/01/JavaScript/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3/index.html">
+<meta property="og:site_name" content="ranup前端笔记汇总">
+<meta property="og:description" content="原生charAt() 返回给定索引位置的字符。  友情提示，索引从0开始的。   let msg &#x3D; &quot;abcd&quot;;console.log(msg.charAt(2)); &#x2F;&#x2F; &quot;c&quot;  charCodeAt() 查看指定码元的字符编码。  如果想把很多的字符都正确的转换为对应的码点，那可以使用 codePointAt() let msg &#x3D; &quot;a">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-01T04:20:54.000Z">
+<meta property="article:modified_time" content="2024-12-27T17:38:35.757Z">
+<meta property="article:author" content="ranup">
+<meta property="article:tag" content="杂糅">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://ran-up.github.io/2022/12/01/JavaScript/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="ranup前端笔记汇总" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">冉星</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer，rising star</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Chongqing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ran-up" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://juejin.cn/user/3769553921772376" target="_blank" title="Juejin" data-toggle=tooltip data-placement=top><i class="icon icon-juejin"></i></a></li>
+        
+        <li><a href="https://blog.csdn.net/m0_57533638?spm=1011.2415.3001.5343" target="_blank" title="Coding" data-toggle=tooltip data-placement=top><i class="icon icon-coding"></i></a></li>
+        
+        <li><a href="https://gitee.com/ran-xing" target="_blank" title="Gitee" data-toggle=tooltip data-placement=top><i class="icon icon-gitee"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+    
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎来到我的博客!<br/>期待大家的交流与分享经验!<br/>我的<a target="_blank" rel="noopener" href='https://github.com/ran-up' style="color:#E541E5;text-decoration:underline dotted">Github</a>主页，<br/>邮箱<span style="color:#E541E5;text-decoration:underline dotted">ranranup@yeah.net</span>。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AJAX-axios/">AJAX-axios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap%E7%9B%B8%E5%85%B3/">Bootstrap相关</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8/">CSS预处理器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ElementUI/">ElementUI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSR/">SSR</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git%E7%9B%B8%E5%85%B3/">git相关</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pure%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/">pure主题配置</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/uniapp%E9%A1%B9%E7%9B%AE/">uniapp项目</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vant%E7%9B%B8%E5%85%B3/">vant相关</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vue/">vue</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vue%E9%A1%B9%E7%9B%AE/">vue项目</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/webpack/">webpack</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8swiper%E5%87%BA%E7%8E%B0%E7%9A%84bug/">使用swiper出现的bug</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/">前端面试集锦</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%87%BA%E9%94%99/">安装依赖出错</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%A3%E5%88%99/">正则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9C%8B%E8%A7%86%E9%A2%91-%E6%96%87%E7%AB%A0%E7%AC%94%E8%AE%B0/">看视频/文章笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6/">软件</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B%E8%AE%B0%E5%BD%95/">项目流程记录</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX-axios/" rel="tag">AJAX-axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap%E9%94%99%E8%AF%AF/" rel="tag">Bootstrap错误</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ElementPlus/" rel="tag">ElementPlus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event-%E4%BA%8B%E4%BB%B6/" rel="tag">Event 事件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/" rel="tag">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css%E8%AE%BE%E7%BD%AE%E5%8F%98%E9%87%8F/" rel="tag">css设置变量</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/el-table/" rel="tag">el-table</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/" rel="tag">es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git%E6%8A%A5%E9%94%99/" rel="tag">git报错</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AE%9E%E6%93%8D/" rel="tag">js实操</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E6%89%8B%E5%86%99%E9%A2%98-call%E3%80%81apply%E3%80%81bind/" rel="tag">js手写题--call、apply、bind</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E6%89%8B%E5%86%99%E9%A2%98-%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" rel="tag">js手写题--数组去重</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E6%89%8B%E5%86%99%E9%A2%98-%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" rel="tag">js手写题--防抖与节流</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm%E6%8A%A5%E9%94%99/" rel="tag">npm报错</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pure%E4%B8%BB%E9%A2%98%E6%96%B0%E5%A2%9E%E6%97%B6%E9%97%B4/" rel="tag">pure主题新增时间</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reduce%E7%9A%84%E5%A6%99%E7%94%A8/" rel="tag">reduce的妙用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vantweapp%E9%97%AE%E9%A2%98/" rel="tag">vantweapp问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vant%E7%9A%84%E5%9D%91/" rel="tag">vant的坑</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue2/" rel="tag">vue2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue3/" rel="tag">vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue%E4%B8%AD%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD/" rel="tag">vue中的懒加载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E6%A6%82%E6%8B%AC/" rel="tag">云开发使用概括</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E9%A2%98/" rel="tag">代码题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A8%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">常用知识点</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8FtabBar%E8%B7%B3%E8%BD%AC%E9%97%AE%E9%A2%98/" rel="tag">微信小程序tabBar跳转问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" rel="tag">快捷键</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E6%A7%BD/" rel="tag">插槽</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E7%B3%85/" rel="tag">杂糅</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E8%AE%B0/" rel="tag">杂记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" rel="tag">笔试题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" rel="tag">类型转换</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag">面试题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AEbug/" rel="tag">项目bug</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B%E8%AE%B0%E5%BD%95/" rel="tag">项目流程记录</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/AJAX-axios/" style="font-size: 13px;">AJAX-axios</a> <a href="/tags/Bootstrap%E9%94%99%E8%AF%AF/" style="font-size: 13px;">Bootstrap错误</a> <a href="/tags/ElementPlus/" style="font-size: 13px;">ElementPlus</a> <a href="/tags/Event-%E4%BA%8B%E4%BB%B6/" style="font-size: 13px;">Event 事件</a> <a href="/tags/JavaScript/" style="font-size: 13.5px;">JavaScript</a> <a href="/tags/Sass/" style="font-size: 13px;">Sass</a> <a href="/tags/css%E8%AE%BE%E7%BD%AE%E5%8F%98%E9%87%8F/" style="font-size: 13px;">css设置变量</a> <a href="/tags/el-table/" style="font-size: 13px;">el-table</a> <a href="/tags/es6/" style="font-size: 13px;">es6</a> <a href="/tags/git/" style="font-size: 13.75px;">git</a> <a href="/tags/git%E6%8A%A5%E9%94%99/" style="font-size: 13.5px;">git报错</a> <a href="/tags/js%E5%AE%9E%E6%93%8D/" style="font-size: 13px;">js实操</a> <a href="/tags/js%E6%89%8B%E5%86%99%E9%A2%98-call%E3%80%81apply%E3%80%81bind/" style="font-size: 13px;">js手写题--call、apply、bind</a> <a href="/tags/js%E6%89%8B%E5%86%99%E9%A2%98-%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" style="font-size: 13px;">js手写题--数组去重</a> <a href="/tags/js%E6%89%8B%E5%86%99%E9%A2%98-%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" style="font-size: 13px;">js手写题--防抖与节流</a> <a href="/tags/npm%E6%8A%A5%E9%94%99/" style="font-size: 13px;">npm报错</a> <a href="/tags/nuxt/" style="font-size: 13.5px;">nuxt</a> <a href="/tags/pure%E4%B8%BB%E9%A2%98%E6%96%B0%E5%A2%9E%E6%97%B6%E9%97%B4/" style="font-size: 13px;">pure主题新增时间</a> <a href="/tags/reduce%E7%9A%84%E5%A6%99%E7%94%A8/" style="font-size: 13px;">reduce的妙用</a> <a href="/tags/typescript/" style="font-size: 13px;">typescript</a> <a href="/tags/vantweapp%E9%97%AE%E9%A2%98/" style="font-size: 13px;">vantweapp问题</a> <a href="/tags/vant%E7%9A%84%E5%9D%91/" style="font-size: 13px;">vant的坑</a> <a href="/tags/vue2/" style="font-size: 13px;">vue2</a> <a href="/tags/vue3/" style="font-size: 13px;">vue3</a> <a href="/tags/vue%E4%B8%AD%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD/" style="font-size: 13px;">vue中的懒加载</a> <a href="/tags/webpack/" style="font-size: 13px;">webpack</a> <a href="/tags/%E4%BA%91%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E6%A6%82%E6%8B%AC/" style="font-size: 13px;">云开发使用概括</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E9%A2%98/" style="font-size: 13.25px;">代码题</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 13px;">常用知识点</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8FtabBar%E8%B7%B3%E8%BD%AC%E9%97%AE%E9%A2%98/" style="font-size: 13px;">微信小程序tabBar跳转问题</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 13px;">快捷键</a> <a href="/tags/%E6%8F%92%E6%A7%BD/" style="font-size: 13px;">插槽</a> <a href="/tags/%E6%9D%82%E7%B3%85/" style="font-size: 13.5px;">杂糅</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 13.25px;">杂记</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13px;">正则</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 13px;">正则表达式</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 13px;">笔试题</a> <a href="/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" style="font-size: 13px;">类型转换</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 13px;">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13px;">计算机网络</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13px;">面试</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 13.25px;">面试题</a> <a href="/tags/%E9%A1%B9%E7%9B%AEbug/" style="font-size: 14px;">项目bug</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B%E8%AE%B0%E5%BD%95/" style="font-size: 13px;">项目流程记录</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">二月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">一月 2025</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">十二月 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SSR/">SSR</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/02/13/SSR/nuxt/nuxt%E7%AE%80%E6%98%93%E5%AE%9E%E6%88%98oppo%E5%AE%98%E7%BD%91/" class="title">nuxt简易实战oppo官网</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-02-12T16:36:16.000Z" itemprop="datePublished">2025-02-13 00:36:16</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SSR/">SSR</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/01/29/SSR/nuxt/nuxt%E5%88%9D%E4%BD%93%E9%AA%8C/" class="title">nuxt初体验</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-01-29T09:40:41.000Z" itemprop="datePublished">2025-01-29 17:40:41</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/">前端面试集锦</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/01/25/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%85%A8%E5%AE%B6%E6%A1%B6/" class="title">前端面试全家桶</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-01-25T15:25:28.000Z" itemprop="datePublished">2025-01-25 23:25:28</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/typescript/">typescript</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/01/20/TypeScript/typescript%E7%9F%A5%E8%AF%86/" class="title">typescript知识</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-01-20T11:01:22.000Z" itemprop="datePublished">2025-01-20 19:01:22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SSR/">SSR</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/01/18/SSR/nuxt/%E6%89%8B%E5%B7%A5%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93SSR/" class="title">手工搭建简易SSR</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-01-17T16:47:44.000Z" itemprop="datePublished">2025-01-18 00:47:44</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+    
+    
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%94%9F"><span class="toc-number">1.</span> <span class="toc-text">原生</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#charAt"><span class="toc-number">1.1.</span> <span class="toc-text">charAt()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#charCodeAt"><span class="toc-number">1.2.</span> <span class="toc-text">charCodeAt()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#codePointAt"><span class="toc-number">1.3.</span> <span class="toc-text">codePointAt()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fromCharCode"><span class="toc-number">1.4.</span> <span class="toc-text">fromCharCode()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fromCodePoint"><span class="toc-number">1.5.</span> <span class="toc-text">fromCodePoint()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#normalize"><span class="toc-number">1.6.</span> <span class="toc-text">normalize()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#concat"><span class="toc-number">1.7.</span> <span class="toc-text">concat()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#slice"><span class="toc-number">1.8.</span> <span class="toc-text">slice()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#substr"><span class="toc-number">1.9.</span> <span class="toc-text">substr()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#substring"><span class="toc-number">1.10.</span> <span class="toc-text">substring()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#indexOf"><span class="toc-number">1.11.</span> <span class="toc-text">indexOf()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lastIndexOf"><span class="toc-number">1.12.</span> <span class="toc-text">lastIndexOf()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#startsWith"><span class="toc-number">1.13.</span> <span class="toc-text">startsWith()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#endsWith"><span class="toc-number">1.14.</span> <span class="toc-text">endsWith()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#includes"><span class="toc-number">1.15.</span> <span class="toc-text">includes()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#trim"><span class="toc-number">1.16.</span> <span class="toc-text">trim()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#repeat"><span class="toc-number">1.17.</span> <span class="toc-text">repeat()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#padStart-%E5%92%8C-padEnd"><span class="toc-number">1.18.</span> <span class="toc-text">padStart() 和 padEnd()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#toLowerCase-%E3%80%81toLocaleLowerCase-%E3%80%81toUpperCase-%E5%92%8CtoLocaleUpperCase"><span class="toc-number">1.19.</span> <span class="toc-text">toLowerCase()、toLocaleLowerCase()、toUpperCase()和toLocaleUpperCase()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#localeCompare"><span class="toc-number">1.20.</span> <span class="toc-text">localeCompare()</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-JavaScript/字符串相关" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      字符串相关
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <!-- 上传时间 -->
+<span class="article-date">
+	<i class="icon icon-calendar-check"></i>
+	<a href="/2022/12/01/JavaScript/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3/" class="article-date">
+		首次<time datetime="2022-12-01T04:20:54.000Z" itemprop="datePublished">
+			2022-12-01 12:20:54
+		</time>
+	</a>
+</span>
+
+<!-- 更新时间 -->
+<span class="article-date">
+	<i class="icon icon-calendar-check"></i>
+	<a href="/2022/12/01/JavaScript/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3/" class="article-date">
+		更新<time datetime="2024-12-27T17:38:35.757Z" itemprop="dateUpdated">
+			2024-12-28 01:38:35
+		</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E6%9D%82%E7%B3%85/" rel="tag">杂糅</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2022/12/01/JavaScript/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3/" class="leancloud_visitors"  data-flag-title="字符串相关">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/12/01/JavaScript/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 1.6k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 6(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="原生"><a href="#原生" class="headerlink" title="原生"></a>原生</h2><h3 id="charAt"><a href="#charAt" class="headerlink" title="charAt()"></a>charAt()</h3><ul>
+<li><p>返回给定索引位置的字符。</p>
+</li>
+<li><p>友情提示，索引从0开始的。</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> msg = <span class="string">&quot;abcd&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">charAt</span>(<span class="number">2</span>)); <span class="comment">// &quot;c&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="charCodeAt"><a href="#charCodeAt" class="headerlink" title="charCodeAt()"></a>charCodeAt()</h3><ul>
+<li>查看指定码元的字符编码。</li>
+</ul>
+<p>如果想把很多的字符都正确的转换为对应的码点，那可以使用 codePointAt()</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> msg = <span class="string">&quot;abcd&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">charCodeAt</span>(<span class="number">2</span>)); <span class="comment">// 99</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="codePointAt"><a href="#codePointAt" class="headerlink" title="codePointAt()"></a>codePointAt()</h3><ul>
+<li>接收 16 位码元的索引并返回该索引位置上的码点。</li>
+</ul>
+<p>下面的是将 “ab😊d” 字符串转换为字符编码，对比了 charAt()、charCodeAt()、codePointAt()，后面两个可以把这个字符串转化为对应的字符编码，但 charAt() 不行。</p>
+<p>这里要注意：不能输成 “ab☺d”，这玩意上面三个都能实现。</p>
+<p>但《JavaScript高级开发》第四版上说 charCodeAt() 不行，猜测可能是浏览器进行了设置。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> msg = <span class="string">&quot;ab😊d&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">charAt</span>(<span class="number">0</span>)); <span class="comment">// a</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">charAt</span>(<span class="number">1</span>)); <span class="comment">// b </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">charAt</span>(<span class="number">2</span>)); <span class="comment">// ?</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">charAt</span>(<span class="number">3</span>)); <span class="comment">// ? </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">charAt</span>(<span class="number">4</span>)); <span class="comment">// e</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">charCodeAt</span>(<span class="number">0</span>)); <span class="comment">// 97 </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">charCodeAt</span>(<span class="number">1</span>)); <span class="comment">// 98 </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">charCodeAt</span>(<span class="number">2</span>)); <span class="comment">// 55357</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">charCodeAt</span>(<span class="number">3</span>)); <span class="comment">// 56842</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">charCodeAt</span>(<span class="number">4</span>)); <span class="comment">// 100</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">codePointAt</span>(<span class="number">0</span>)); <span class="comment">// 97 </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">codePointAt</span>(<span class="number">1</span>)); <span class="comment">// 98 </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">codePointAt</span>(<span class="number">2</span>)); <span class="comment">// 55357 </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">codePointAt</span>(<span class="number">3</span>)); <span class="comment">// 56842 </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">codePointAt</span>(<span class="number">4</span>)); <span class="comment">// 100</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="fromCharCode"><a href="#fromCharCode" class="headerlink" title="fromCharCode()"></a>fromCharCode()</h3><ul>
+<li>根据给定的 UTF-16 码点返回对应字符。</li>
+<li>可以接收多个值，将其拼接成一个字符串。</li>
+</ul>
+<p>如果想把很多的码点都正确的转换为对应的字符，那可以使用 fromCodePoint()</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(<span class="number">0x61</span>, <span class="number">0x62</span>, <span class="number">0x63</span>, <span class="number">0x64</span>)); <span class="comment">// &quot;abcd&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="fromCodePoint"><a href="#fromCodePoint" class="headerlink" title="fromCodePoint()"></a>fromCodePoint()</h3><ul>
+<li>接收任意的码点，返回对应字符。</li>
+<li>可以接收多个值，将其拼接成一个字符串。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(<span class="number">97</span>, <span class="number">98</span>, <span class="number">55357</span>, <span class="number">56842</span>, <span class="number">100</span>)); <span class="comment">// ab😊d</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="title class_">String</span>.<span class="title function_">fromCodePoint</span>(<span class="number">97</span>, <span class="number">98</span>, <span class="number">128522</span>, <span class="number">100</span>)); <span class="comment">// ab😊d</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="normalize"><a href="#normalize" class="headerlink" title="normalize()"></a>normalize()</h3><ul>
+<li>4种”NFD”、”NFC”、”NFKD”或”NFKC”。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 未使用规范</span></span><br><span class="line"><span class="keyword">let</span> a1 = <span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(<span class="number">0x00C5</span>), </span><br><span class="line">    a2 = <span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(<span class="number">0x212B</span>), </span><br><span class="line">    a3 = <span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(<span class="number">0x0041</span>, <span class="number">0x030A</span>); </span><br><span class="line"><span class="comment">// U+00C5 是对 0+212B 进行 NFC/NFKC 规范化之后的结果</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a1 === a1.<span class="title function_">normalize</span>(<span class="string">&quot;NFD&quot;</span>)); <span class="comment">// false </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a1 === a1.<span class="title function_">normalize</span>(<span class="string">&quot;NFC&quot;</span>)); <span class="comment">// true </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a1 === a1.<span class="title function_">normalize</span>(<span class="string">&quot;NFKD&quot;</span>)); <span class="comment">// false </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a1 === a1.<span class="title function_">normalize</span>(<span class="string">&quot;NFKC&quot;</span>)); <span class="comment">// true </span></span><br><span class="line"><span class="comment">// U+212B 是未规范化的</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a2 === a2.<span class="title function_">normalize</span>(<span class="string">&quot;NFD&quot;</span>)); <span class="comment">// false </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a2 === a2.<span class="title function_">normalize</span>(<span class="string">&quot;NFC&quot;</span>)); <span class="comment">// false </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a2 === a2.<span class="title function_">normalize</span>(<span class="string">&quot;NFKD&quot;</span>)); <span class="comment">// false </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a2 === a2.<span class="title function_">normalize</span>(<span class="string">&quot;NFKC&quot;</span>)); <span class="comment">// false </span></span><br><span class="line"><span class="comment">// U+0041/U+030A 是对 0+212B 进行 NFD/NFKD 规范化之后的结果</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a3 === a3.<span class="title function_">normalize</span>(<span class="string">&quot;NFD&quot;</span>)); <span class="comment">// true </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a3 === a3.<span class="title function_">normalize</span>(<span class="string">&quot;NFC&quot;</span>)); <span class="comment">// false </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a3 === a3.<span class="title function_">normalize</span>(<span class="string">&quot;NFKD&quot;</span>)); <span class="comment">// true </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a3 === a3.<span class="title function_">normalize</span>(<span class="string">&quot;NFKC&quot;</span>)); <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用规范</span></span><br><span class="line"><span class="keyword">let</span> a1 = <span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(<span class="number">0x00C5</span>),</span><br><span class="line">    a2 = <span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(<span class="number">0x212B</span>), </span><br><span class="line">    a3 = <span class="title class_">String</span>.<span class="title function_">fromCharCode</span>(<span class="number">0x0041</span>, <span class="number">0x030A</span>); </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a1.<span class="title function_">normalize</span>(<span class="string">&quot;NFD&quot;</span>) === a2.<span class="title function_">normalize</span>(<span class="string">&quot;NFD&quot;</span>)); <span class="comment">// true </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a2.<span class="title function_">normalize</span>(<span class="string">&quot;NFKC&quot;</span>) === a3.<span class="title function_">normalize</span>(<span class="string">&quot;NFKC&quot;</span>)); <span class="comment">// true </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a1.<span class="title function_">normalize</span>(<span class="string">&quot;NFC&quot;</span>) === a3.<span class="title function_">normalize</span>(<span class="string">&quot;NFC&quot;</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="concat"><a href="#concat" class="headerlink" title="concat()"></a>concat()</h3><ul>
+<li>将一个或多个字符串拼接成一个新字符串。</li>
+<li>接收一或两个参数，省略第二个参数都意味着提取到字符串末尾。</li>
+<li>不修改原数据。</li>
+</ul>
+<h3 id="slice"><a href="#slice" class="headerlink" title="slice()"></a>slice()</h3><ul>
+<li>从字符串中提取子字符串。</li>
+<li>接收一或两个参数，省略第二个参数都意味着提取到字符串末尾。</li>
+<li>不修改原数据。</li>
+<li>将所有负值参数都当成字符串长度加上负参数值。</li>
+</ul>
+<h3 id="substr"><a href="#substr" class="headerlink" title="substr()"></a>substr()</h3><ul>
+<li>从字符串中提取子字符串。</li>
+<li>接收一或两个参数，省略第二个参数都意味着提取到字符串末尾。</li>
+<li>不修改原数据。</li>
+<li>将第一个负参数值当成字符串长度加上该值，将第二个负参数值转换为 0。</li>
+</ul>
+<h3 id="substring"><a href="#substring" class="headerlink" title="substring()"></a>substring()</h3><ul>
+<li>从字符串中提取子字符串。</li>
+<li>接收一或两个参数，省略第二个参数都意味着提取到字符串末尾。</li>
+<li>不修改原数据。</li>
+<li>将所有负值参数都当成字符串长度加上负参数值。</li>
+</ul>
+<h3 id="indexOf"><a href="#indexOf" class="headerlink" title="indexOf()"></a>indexOf()</h3><ul>
+<li>从字符串开头开始查找子字符串，并返回位置（如果没找到，则返回-1）。</li>
+</ul>
+<h3 id="lastIndexOf"><a href="#lastIndexOf" class="headerlink" title="lastIndexOf()"></a>lastIndexOf()</h3><ul>
+<li>从字符串末尾开始查找子字符串，并返回位置（如果没找到，则返回-1）。</li>
+</ul>
+<h3 id="startsWith"><a href="#startsWith" class="headerlink" title="startsWith()"></a>startsWith()</h3><ul>
+<li>检测字符串中是否包含另一个字符串。</li>
+<li>从字符串中搜索传入的字符串，并返回一个表示是否包含的布尔值。</li>
+<li>可选的第二个参数，表示开始搜索的位置。则指：从指定位置向着字符串末尾搜索。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> msg = <span class="string">&quot;foobarbaz&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">startsWith</span>(<span class="string">&quot;foo&quot;</span>)); <span class="comment">// true </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">startsWith</span>(<span class="string">&quot;bar&quot;</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">startsWith</span>(<span class="string">&quot;foo&quot;</span>, <span class="number">1</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="endsWith"><a href="#endsWith" class="headerlink" title="endsWith()"></a>endsWith()</h3><ul>
+<li>检测字符串中是否包含另一个字符串。</li>
+<li>从字符串中搜索传入的字符串，并返回一个表示是否包含的布尔值。</li>
+<li>可选的第二个参数，表示应该当作字符串末尾的位置。如</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> msg = <span class="string">&quot;foobarbaz&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">endsWith</span>(<span class="string">&quot;baz&quot;</span>)); <span class="comment">// true </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">endsWith</span>(<span class="string">&quot;bar&quot;</span>)); <span class="comment">// false </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(message.<span class="title function_">endsWith</span>(<span class="string">&quot;bar&quot;</span>, <span class="number">6</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="includes"><a href="#includes" class="headerlink" title="includes()"></a>includes()</h3><ul>
+<li>检测字符串中是否包含另一个字符串。</li>
+<li>从字符串中搜索传入的字符串，并返回一个表示是否包含的布尔值。</li>
+<li>可选的第二个参数，表示开始搜索的位置。则指：从指定位置向着字符串末尾搜索。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> msg = <span class="string">&quot;foobarbaz&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">includes</span>(<span class="string">&quot;bar&quot;</span>)); <span class="comment">// true </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">includes</span>(<span class="string">&quot;aaa&quot;</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">includes</span>(<span class="string">&quot;bar&quot;</span>, <span class="number">4</span>)); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="trim"><a href="#trim" class="headerlink" title="trim()"></a>trim()</h3><ul>
+<li>删除前、后所有空格符，再返回结果。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> msg = <span class="string">&quot;    hello     &quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">trim</span>()) <span class="comment">// &quot;hello&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>trimLeft() 和 trimRight()方法分别用于从字符串开始和末尾清理空格符。</p>
+<h3 id="repeat"><a href="#repeat" class="headerlink" title="repeat()"></a>repeat()</h3><ul>
+<li>接收一个整数参数，将字符串复制多少次，然后返回拼接所有副本后的结果。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> msg = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(msg.<span class="title function_">repeat</span>(<span class="number">5</span>)) <span class="comment">// &quot;hellohellohellohellohello&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="padStart-和-padEnd"><a href="#padStart-和-padEnd" class="headerlink" title="padStart() 和 padEnd()"></a>padStart() 和 padEnd()</h3><ul>
+<li>复制字符串，如果小于指定长度，则在相应一边填充字符，直至满足长度条件。</li>
+<li>第一个参数是长度，第二个参数是可选的填充字符串，默认为空格。</li>
+</ul>
+<p>浏览器上没效果。</p>
+<h3 id="toLowerCase-、toLocaleLowerCase-、toUpperCase-和toLocaleUpperCase"><a href="#toLowerCase-、toLocaleLowerCase-、toUpperCase-和toLocaleUpperCase" class="headerlink" title="toLowerCase()、toLocaleLowerCase()、toUpperCase()和toLocaleUpperCase()"></a>toLowerCase()、toLocaleLowerCase()、toUpperCase()和toLocaleUpperCase()</h3><ul>
+<li>toLocaleLowerCase()和 toLocaleUpperCase()方法旨在基于特定地区实现。在不知道代码设计什么语言时使用。</li>
+</ul>
+<h3 id="localeCompare"><a href="#localeCompare" class="headerlink" title="localeCompare()"></a>localeCompare()</h3><ul>
+<li>比较两个字符串。</li>
+<li>相等返回0，字符串比字符串参数小返回-1，字符串比字符串参数大返回1。</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> stringValue = <span class="string">&quot;yellow&quot;</span>; </span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(stringValue.<span class="title function_">localeCompare</span>(<span class="string">&quot;brick&quot;</span>)); <span class="comment">// 1 </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(stringValue.<span class="title function_">localeCompare</span>(<span class="string">&quot;yellow&quot;</span>)); <span class="comment">// 0 </span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(stringValue.<span class="title function_">localeCompare</span>(<span class="string">&quot;zoo&quot;</span>)); <span class="comment">// -1</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-license">
+      <strong>本文作者：</strong>
+      <a href="ran-up.github.io" style="color: #E541E5">冉星</a>
+    </li>
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://ran-up.github.io/2022/12/01/JavaScript/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E5%85%B3/" title="字符串相关" target="_blank" rel="external"
+        style="color: #E541E5">http://ran-up.github.io/2022/12/01/JavaScript/字符串相关/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh"
+        target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body" style="background-color:#b7b4f0;">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg"
+            class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading">
+          <a href="" target="_blank">
+            <!-- author 内容 -->
+            <span class="text-dark">冉星</span>
+            <!-- author_title 内容 -->
+            <small class="ml-1x">Web Developer，rising star</small>
+          </a>
+        </h3>
+        <!-- 个人简介内容 -->
+        <div>个人简介：脆弱的种子在温室也会死亡，坚强的种子，在沙漠也能发芽。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+    
+    <ul class="pager pull-left">
+      
+      <li class="prev">
+        <a href="/2022/12/31/%E7%9C%8B%E5%88%B0%E8%A7%86%E9%A2%91/%E6%96%87%E7%AB%A0%E7%9A%84%E7%AC%94%E8%AE%B0(%E6%9D%82%E8%AE%B0)/%E8%A7%82%E7%9C%8B%E6%B8%A1%E4%B8%80web%E5%89%8D%E7%AB%AF%E5%A4%A7%E5%B8%88%E8%AF%BE%E7%AC%94%E8%AE%B0/" title="观看渡一web前端大师课笔记"><i
+            class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      </li>
+      
+      
+      <li class="next">
+        <a href="/2022/12/01/JavaScript/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AC%94%E8%AE%B0/"
+          title="正则表达式笔记"><span>下一篇&nbsp;&nbsp;</span><i
+            class="icon icon-angle-right" aria-hidden="true"></i></a>
+      </li>
+      
+      
+      <!-- 下一篇 文件目录 -->
+      <li class="toggle-toc">
+        <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录"
+          role="button">
+          <!-- [ 和 文字目录文字 -->
+          <span style="color:#6699FF;">[&nbsp;</span><span style="color:#6699FF;">文章目录</span>
+          <!-- 钩子 图标 -->
+          <i class="text-collapsed icon icon-anchor"></i>
+          <!-- x 图标 -->
+          <i class="text-in icon icon-close"></i>
+          <!-- ] -->
+          <span style="color:#6699FF;">]</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+    
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal"
+      data-target="#donateModal"><span>赏</span></button>
+    <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+    
+
+    <div class="bar-right">
+      
+      <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
+        data-mobile-sites="weibo,qq,qzone"></div>
+      
+    </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/busuanzi/2.3.0/bsz.pure.mini.min.js"></script> -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+    
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ran-up" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://juejin.cn/user/3769553921772376" target="_blank" title="Juejin" data-toggle=tooltip data-placement=top><i class="icon icon-juejin"></i></a></li>
+        
+        <li><a href="https://blog.csdn.net/m0_57533638?spm=1011.2415.3001.5343" target="_blank" title="Coding" data-toggle=tooltip data-placement=top><i class="icon icon-coding"></i></a></li>
+        
+        <li><a href="https://gitee.com/ran-xing" target="_blank" title="Gitee" data-toggle=tooltip data-placement=top><i class="icon icon-gitee"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+        
+        &copy; 2025 ranup
+        
+        <div class="publishby">
+            <span id="sitetime"></span> <br />
+            <span id="busuanzi_container_site_pv">
+                点击<span id="busuanzi_value_site_pv" style="font-family:Courier"></span>次，
+                访客<span id="busuanzi_value_site_uv" style="font-family:Courier"></span>人
+            </span>
+        </div>
+        <!-- <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div> -->
+    </div>
+</footer>
+<script>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+
+        // Date.UTC() -- 返回距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+
+        var t1 = Date.UTC(2022, 10, 11, 15, 06, 05); //t1为建站时间
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+        var arr = (todayYear % 4 == 0 && todayYear % 100 != 0) || todayYear % 400 == 0 ? [31, 29, 31, 30, 31, 30,
+            31, 31, 30, 31, 30, 31
+        ] : [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        var index = 0,
+            diffDay = diffDays
+        while (diffDay > 0) {
+            diffDay = diffDay - arr[index]
+            if (diffDay > 0) {
+                index++
+            } else {
+                var d = diffDay + arr[index]
+                index + 1
+            }
+        }
+
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+            minutes) / seconds);
+
+        var y = diffYears.toString()
+        var h = diffHours.toString().padStart(2, '0')
+        var m = diffMinutes.toString().padStart(2, '0')
+        var s = diffSeconds.toString().padStart(2, '0')
+
+        document.getElementById("sitetime").innerHTML = `已运行：${y}年${index}月${d}日 ${h}时${m}分${s}秒`
+        // 因为建站时间还没有一年，就将之注释掉了。需要的可以取消
+    }
+    siteTime();
+</script>
+    <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+   window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'VekdeC9mwtmMA0UxgTtMvRzc-gzGzoHsz',
+    appKey: 'I18Ljx77J3gdqvck2pluUaUb',
+    placeholder: '欢迎探讨',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+     
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+
+<!-- 回到顶部 -->
+<style type="text/css">
+   #go-top {
+      display: none;
+      position: fixed;
+      right: 30px;
+      bottom: 60px;
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: #6699FF;
+      cursor: pointer;
+   }
+
+   #go-top:after {
+      content: " ";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      border-top: 2px solid #fff;
+      border-right: 2px solid #fff;
+      transform: translate(-50%, -30%) rotate(-45deg);
+   }
+
+   #go-top:hover {
+      background-color: #6666FF;
+   }
+</style>
+
+<div id="go-top"></div>
+
+<script>
+   $(function () {
+      var top = $("#go-top");
+      $(window).scroll(function () {
+         ($(window).scrollTop() > 300) ? top.show(300): top.hide(200);
+         $("#go-top").click(function () {
+            $('body,html').animate({
+               scrollTop: 0
+            });
+            return false();
+         })
+      });
+   });
+</script>
+  </body>
+
+  </html>

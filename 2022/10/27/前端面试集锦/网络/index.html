@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang=zh>
+  <head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>网络 | 前端笔记收纳</title>
+  <meta name="description" content="什么是HTTP? HTTP 和 HTTPS 的区别?概念HTTP 是超文本传输协议，默认使用 80 端口，是互联网上应用最为广泛的一种网络协议。是一个客户端和服务器端请求和应答的标准（TCP），用于从 WWW 服务器传输超文本到本地浏览器的传输协议，它可以使浏览器更加高效，使网络传输减少。 HTTPS：安全超文本传输协议，默认使用 443 端口。简单讲是 HTTP 的安全版，通过 SSL 加密。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络">
+<meta property="og:url" content="http://ran-up.github.io/2022/10/27/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/%E7%BD%91%E7%BB%9C/index.html">
+<meta property="og:site_name" content="ranup前端笔记汇总">
+<meta property="og:description" content="什么是HTTP? HTTP 和 HTTPS 的区别?概念HTTP 是超文本传输协议，默认使用 80 端口，是互联网上应用最为广泛的一种网络协议。是一个客户端和服务器端请求和应答的标准（TCP），用于从 WWW 服务器传输超文本到本地浏览器的传输协议，它可以使浏览器更加高效，使网络传输减少。 HTTPS：安全超文本传输协议，默认使用 443 端口。简单讲是 HTTP 的安全版，通过 SSL 加密。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://ran-up.github.io/images/tcp%E4%B8%8Eudp%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF.jpg">
+<meta property="article:published_time" content="2022-10-27T02:03:53.000Z">
+<meta property="article:modified_time" content="2024-12-27T17:38:35.767Z">
+<meta property="article:author" content="ranup">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ran-up.github.io/images/tcp%E4%B8%8Eudp%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF.jpg">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://ran-up.github.io/2022/10/27/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/%E7%BD%91%E7%BB%9C/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="ranup前端笔记汇总" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+  
+
+  <body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">冉星</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer，rising star</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Chongqing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ran-up" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://juejin.cn/user/3769553921772376" target="_blank" title="Juejin" data-toggle=tooltip data-placement=top><i class="icon icon-juejin"></i></a></li>
+        
+        <li><a href="https://blog.csdn.net/m0_57533638?spm=1011.2415.3001.5343" target="_blank" title="Coding" data-toggle=tooltip data-placement=top><i class="icon icon-coding"></i></a></li>
+        
+        <li><a href="https://gitee.com/ran-xing" target="_blank" title="Gitee" data-toggle=tooltip data-placement=top><i class="icon icon-gitee"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+    
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎来到我的博客!<br/>期待大家的交流与分享经验!<br/>我的<a target="_blank" rel="noopener" href='https://github.com/ran-up' style="color:#E541E5;text-decoration:underline dotted">Github</a>主页，<br/>邮箱<span style="color:#E541E5;text-decoration:underline dotted">ranranup@yeah.net</span>。</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AJAX-axios/">AJAX-axios</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Bootstrap%E7%9B%B8%E5%85%B3/">Bootstrap相关</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/CSS%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8/">CSS预处理器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/ElementUI/">ElementUI</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SSR/">SSR</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vue/">Vue</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/git%E7%9B%B8%E5%85%B3/">git相关</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/pure%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/">pure主题配置</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/typescript/">typescript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/uniapp%E9%A1%B9%E7%9B%AE/">uniapp项目</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vant%E7%9B%B8%E5%85%B3/">vant相关</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vue/">vue</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vue%E9%A1%B9%E7%9B%AE/">vue项目</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/webpack/">webpack</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BD%BF%E7%94%A8swiper%E5%87%BA%E7%8E%B0%E7%9A%84bug/">使用swiper出现的bug</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/">前端面试集锦</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%87%BA%E9%94%99/">安装依赖出错</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%A3%E5%88%99/">正则</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%9C%8B%E8%A7%86%E9%A2%91-%E6%96%87%E7%AB%A0%E7%AC%94%E8%AE%B0/">看视频/文章笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BD%91%E7%BB%9C/">网络</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6/">软件</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B%E8%AE%B0%E5%BD%95/">项目流程记录</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AJAX-axios/" rel="tag">AJAX-axios</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bootstrap%E9%94%99%E8%AF%AF/" rel="tag">Bootstrap错误</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ElementPlus/" rel="tag">ElementPlus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event-%E4%BA%8B%E4%BB%B6/" rel="tag">Event 事件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Sass/" rel="tag">Sass</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/css%E8%AE%BE%E7%BD%AE%E5%8F%98%E9%87%8F/" rel="tag">css设置变量</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/el-table/" rel="tag">el-table</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/" rel="tag">es6</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git%E6%8A%A5%E9%94%99/" rel="tag">git报错</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E5%AE%9E%E6%93%8D/" rel="tag">js实操</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E6%89%8B%E5%86%99%E9%A2%98-call%E3%80%81apply%E3%80%81bind/" rel="tag">js手写题--call、apply、bind</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E6%89%8B%E5%86%99%E9%A2%98-%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" rel="tag">js手写题--数组去重</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/js%E6%89%8B%E5%86%99%E9%A2%98-%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" rel="tag">js手写题--防抖与节流</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm%E6%8A%A5%E9%94%99/" rel="tag">npm报错</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nuxt/" rel="tag">nuxt</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pure%E4%B8%BB%E9%A2%98%E6%96%B0%E5%A2%9E%E6%97%B6%E9%97%B4/" rel="tag">pure主题新增时间</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reduce%E7%9A%84%E5%A6%99%E7%94%A8/" rel="tag">reduce的妙用</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/typescript/" rel="tag">typescript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vantweapp%E9%97%AE%E9%A2%98/" rel="tag">vantweapp问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vant%E7%9A%84%E5%9D%91/" rel="tag">vant的坑</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue2/" rel="tag">vue2</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue3/" rel="tag">vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue%E4%B8%AD%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD/" rel="tag">vue中的懒加载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E6%A6%82%E6%8B%AC/" rel="tag">云开发使用概括</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E9%A2%98/" rel="tag">代码题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B8%B8%E7%94%A8%E7%9F%A5%E8%AF%86%E7%82%B9/" rel="tag">常用知识点</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8FtabBar%E8%B7%B3%E8%BD%AC%E9%97%AE%E9%A2%98/" rel="tag">微信小程序tabBar跳转问题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" rel="tag">快捷键</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8F%92%E6%A7%BD/" rel="tag">插槽</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E7%B3%85/" rel="tag">杂糅</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%9D%82%E8%AE%B0/" rel="tag">杂记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="tag">正则表达式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" rel="tag">笔试题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" rel="tag">类型转换</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C/" rel="tag">网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag">面试题</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AEbug/" rel="tag">项目bug</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B%E8%AE%B0%E5%BD%95/" rel="tag">项目流程记录</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/AJAX-axios/" style="font-size: 13px;">AJAX-axios</a> <a href="/tags/Bootstrap%E9%94%99%E8%AF%AF/" style="font-size: 13px;">Bootstrap错误</a> <a href="/tags/ElementPlus/" style="font-size: 13px;">ElementPlus</a> <a href="/tags/Event-%E4%BA%8B%E4%BB%B6/" style="font-size: 13px;">Event 事件</a> <a href="/tags/JavaScript/" style="font-size: 13.5px;">JavaScript</a> <a href="/tags/Sass/" style="font-size: 13px;">Sass</a> <a href="/tags/css%E8%AE%BE%E7%BD%AE%E5%8F%98%E9%87%8F/" style="font-size: 13px;">css设置变量</a> <a href="/tags/el-table/" style="font-size: 13px;">el-table</a> <a href="/tags/es6/" style="font-size: 13px;">es6</a> <a href="/tags/git/" style="font-size: 13.75px;">git</a> <a href="/tags/git%E6%8A%A5%E9%94%99/" style="font-size: 13.5px;">git报错</a> <a href="/tags/js%E5%AE%9E%E6%93%8D/" style="font-size: 13px;">js实操</a> <a href="/tags/js%E6%89%8B%E5%86%99%E9%A2%98-call%E3%80%81apply%E3%80%81bind/" style="font-size: 13px;">js手写题--call、apply、bind</a> <a href="/tags/js%E6%89%8B%E5%86%99%E9%A2%98-%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/" style="font-size: 13px;">js手写题--数组去重</a> <a href="/tags/js%E6%89%8B%E5%86%99%E9%A2%98-%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/" style="font-size: 13px;">js手写题--防抖与节流</a> <a href="/tags/npm%E6%8A%A5%E9%94%99/" style="font-size: 13px;">npm报错</a> <a href="/tags/nuxt/" style="font-size: 13.5px;">nuxt</a> <a href="/tags/pure%E4%B8%BB%E9%A2%98%E6%96%B0%E5%A2%9E%E6%97%B6%E9%97%B4/" style="font-size: 13px;">pure主题新增时间</a> <a href="/tags/reduce%E7%9A%84%E5%A6%99%E7%94%A8/" style="font-size: 13px;">reduce的妙用</a> <a href="/tags/typescript/" style="font-size: 13px;">typescript</a> <a href="/tags/vantweapp%E9%97%AE%E9%A2%98/" style="font-size: 13px;">vantweapp问题</a> <a href="/tags/vant%E7%9A%84%E5%9D%91/" style="font-size: 13px;">vant的坑</a> <a href="/tags/vue2/" style="font-size: 13px;">vue2</a> <a href="/tags/vue3/" style="font-size: 13px;">vue3</a> <a href="/tags/vue%E4%B8%AD%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD/" style="font-size: 13px;">vue中的懒加载</a> <a href="/tags/webpack/" style="font-size: 13px;">webpack</a> <a href="/tags/%E4%BA%91%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E6%A6%82%E6%8B%AC/" style="font-size: 13px;">云开发使用概括</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E9%A2%98/" style="font-size: 13.25px;">代码题</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E7%9F%A5%E8%AF%86%E7%82%B9/" style="font-size: 13px;">常用知识点</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8FtabBar%E8%B7%B3%E8%BD%AC%E9%97%AE%E9%A2%98/" style="font-size: 13px;">微信小程序tabBar跳转问题</a> <a href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" style="font-size: 13px;">快捷键</a> <a href="/tags/%E6%8F%92%E6%A7%BD/" style="font-size: 13px;">插槽</a> <a href="/tags/%E6%9D%82%E7%B3%85/" style="font-size: 13.5px;">杂糅</a> <a href="/tags/%E6%9D%82%E8%AE%B0/" style="font-size: 13.25px;">杂记</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13px;">正则</a> <a href="/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" style="font-size: 13px;">正则表达式</a> <a href="/tags/%E7%AC%94%E8%AF%95%E9%A2%98/" style="font-size: 13px;">笔试题</a> <a href="/tags/%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2/" style="font-size: 13px;">类型转换</a> <a href="/tags/%E7%BD%91%E7%BB%9C/" style="font-size: 13px;">网络</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13px;">计算机网络</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13px;">面试</a> <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" style="font-size: 13.25px;">面试题</a> <a href="/tags/%E9%A1%B9%E7%9B%AEbug/" style="font-size: 14px;">项目bug</a> <a href="/tags/%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B%E8%AE%B0%E5%BD%95/" style="font-size: 13px;">项目流程记录</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">二月 2025</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">一月 2025</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">十二月 2024</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">六月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/01/">一月 2024</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/07/">七月 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">五月 2023</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">二月 2023</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">一月 2023</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">十二月 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/11/">十一月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SSR/">SSR</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/02/13/SSR/nuxt/nuxt%E7%AE%80%E6%98%93%E5%AE%9E%E6%88%98oppo%E5%AE%98%E7%BD%91/" class="title">nuxt简易实战oppo官网</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-02-12T16:36:16.000Z" itemprop="datePublished">2025-02-13 00:36:16</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SSR/">SSR</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/01/29/SSR/nuxt/nuxt%E5%88%9D%E4%BD%93%E9%AA%8C/" class="title">nuxt初体验</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-01-29T09:40:41.000Z" itemprop="datePublished">2025-01-29 17:40:41</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/">前端面试集锦</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/01/25/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E5%85%A8%E5%AE%B6%E6%A1%B6/" class="title">前端面试全家桶</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-01-25T15:25:28.000Z" itemprop="datePublished">2025-01-25 23:25:28</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/typescript/">typescript</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/01/20/TypeScript/typescript%E7%9F%A5%E8%AF%86/" class="title">typescript知识</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-01-20T11:01:22.000Z" itemprop="datePublished">2025-01-20 19:01:22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/SSR/">SSR</a>
+              </p>
+              <p class="item-title">
+                <a href="/2025/01/18/SSR/nuxt/%E6%89%8B%E5%B7%A5%E6%90%AD%E5%BB%BA%E7%AE%80%E6%98%93SSR/" class="title">手工搭建简易SSR</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2025-01-17T16:47:44.000Z" itemprop="datePublished">2025-01-18 00:47:44</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+    
+    
+  <aside class="sidebar sidebar-toc collapse   in  " id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFHTTP-HTTP-%E5%92%8C-HTTPS-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.</span> <span class="toc-text">什么是HTTP? HTTP 和 HTTPS 的区别?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.</span> <span class="toc-text">区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%AF%B4HTTPS%E6%AF%94HTTP%E5%AE%89%E5%85%A8-HTTPS%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">为什么说HTTPS比HTTP安全? HTTPS是如何保证安全的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E4%BA%86-HTTPS-%E5%B0%B1%E4%B8%80%E5%AE%9A%E5%AE%89%E5%85%A8%E5%90%97%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">用了 HTTPS 就一定安全吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3-UDP-%E5%92%8C-TCP-%E5%8C%BA%E5%88%AB-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">4.</span> <span class="toc-text">如何理解 UDP 和 TCP? 区别? 应用场景?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%88%AB-1"><span class="toc-number">4.1.</span> <span class="toc-text">区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">4.2.</span> <span class="toc-text">应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http1-0-1-1-2-0%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">4.3.</span> <span class="toc-text">http1.0 1.1 2.0的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-number">5.</span> <span class="toc-text">状态码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-GET-%E5%92%8C-POST-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">说一下 GET 和 POST 的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%EF%BC%8C%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">7.</span> <span class="toc-text">浏览器从输入url到渲染页面，发生了什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6%EF%BC%88%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BB%98%E5%88%B6%E8%BF%87%E7%A8%8B%EF%BC%89"><span class="toc-number">8.</span> <span class="toc-text">浏览器渲染机制（浏览器绘制过程）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%87%8D%E7%BB%98%E4%B8%8E%E9%87%8D%E6%8E%92%EF%BC%9F%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">9.</span> <span class="toc-text">什么是重绘与重排？有什么区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%A7%A6%E5%8F%91%E9%87%8D%E6%8E%92%E5%92%8C%E9%87%8D%E7%BB%98%EF%BC%9F"><span class="toc-number">10.</span> <span class="toc-text">如何触发重排和重绘？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E9%87%8D%E7%BB%98%E6%88%96%E8%80%85%E9%87%8D%E6%8E%92%EF%BC%9F"><span class="toc-number">11.</span> <span class="toc-text">如何避免重绘或者重排？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%B1%E7%A0%81%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F"><span class="toc-number">12.</span> <span class="toc-text">浏览器乱码的原因是什么？如何解决？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#html-%E8%A7%84%E8%8C%83%E4%B8%AD%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%B1%82%E5%BC%95%E7%94%A8%E8%B5%84%E6%BA%90%E4%B8%8D%E5%8A%A0%E5%8D%8F%E8%AE%AE%E5%A4%B4http%E6%88%96%E8%80%85https%EF%BC%9F"><span class="toc-number">13.</span> <span class="toc-text">html 规范中为什么要求引用资源不加协议头http或者https？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88css%E6%94%BE%E5%9C%A8%E9%A1%B6%E9%83%A8%E8%80%8Cjs%E5%86%99%E5%9C%A8%E5%90%8E%E9%9D%A2"><span class="toc-number">14.</span> <span class="toc-text">为什么css放在顶部而js写在后面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E7%AB%AF%E7%9A%84%E5%AD%98%E5%82%A8%E6%8A%80%E6%9C%AF%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">15.</span> <span class="toc-text">常见的浏览器端的存储技术有哪些？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%8F%8F%E8%BF%B0%E4%B8%80%E4%B8%8B-cookies%EF%BC%8CsessionStorage-%E5%92%8C-localStorage-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-number">16.</span> <span class="toc-text">请描述一下 cookies，sessionStorage 和 localStorage 的区别？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#token%E3%80%81cookie%E3%80%81session%E4%B8%89%E8%80%85%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-number">17.</span> <span class="toc-text">token、cookie、session三者的理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cookie%E4%B8%8Esession%E5%8C%BA%E5%88%AB"><span class="toc-number">18.</span> <span class="toc-text">cookie与session区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#session%E4%B8%8Etoken%E5%8C%BA%E5%88%AB"><span class="toc-number">19.</span> <span class="toc-text">session与token区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-number">20.</span> <span class="toc-text">TCP 三次握手</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-number">21.</span> <span class="toc-text">TCP 四次挥手</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-前端面试集锦/网络" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      网络
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <!-- 上传时间 -->
+<span class="article-date">
+	<i class="icon icon-calendar-check"></i>
+	<a href="/2022/10/27/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/%E7%BD%91%E7%BB%9C/" class="article-date">
+		首次<time datetime="2022-10-27T02:03:53.000Z" itemprop="datePublished">
+			2022-10-27 10:03:53
+		</time>
+	</a>
+</span>
+
+<!-- 更新时间 -->
+<span class="article-date">
+	<i class="icon icon-calendar-check"></i>
+	<a href="/2022/10/27/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/%E7%BD%91%E7%BB%9C/" class="article-date">
+		更新<time datetime="2024-12-27T17:38:35.767Z" itemprop="dateUpdated">
+			2024-12-28 01:38:35
+		</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/">前端面试集锦</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a>
+  </span>
+
+
+        
+
+	<span class="article-read hidden-xs">
+    	<i class="icon icon-eye-fill" aria-hidden="true"></i>
+    	<span id="/2022/10/27/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/%E7%BD%91%E7%BB%9C/" class="leancloud_visitors"  data-flag-title="网络">
+			<span class="leancloud-visitors-count">0</span>
+		</span>
+    </span>
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/10/27/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/%E7%BD%91%E7%BB%9C/#comments" class="article-comment-link">评论</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">字数统计: 4.1k(字)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">阅读时长: 14(分)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="什么是HTTP-HTTP-和-HTTPS-的区别"><a href="#什么是HTTP-HTTP-和-HTTPS-的区别" class="headerlink" title="什么是HTTP? HTTP 和 HTTPS 的区别?"></a>什么是HTTP? HTTP 和 HTTPS 的区别?</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>HTTP 是超文本传输协议，默认使用 80 端口，是互联网上应用最为广泛的一种网络协议。是一个客户端和服务器端请求和应答的标准（TCP），用于从 WWW 服务器传输超文本到本地浏览器的传输协议，它可以使浏览器更加高效，使网络传输减少。</p>
+<p>HTTPS：安全超文本传输协议，默认使用 443 端口。简单讲是 HTTP 的安全版，通过 SSL 加密。</p>
+<h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ul>
+<li>HTTP 协议的数据传输是明文的，是不安全的，而 HTTPS 使用了 SSL 进行加密传输。</li>
+<li>HTTP 和 HTTPS 的连接方式不同，默认端口也不同，HTTP 是80端口，HTTPS 是443端口。</li>
+<li>HTTPS 由于需要设计加密以及多次握手，性能方面不如 HTTP。</li>
+<li>HTTPS 协议需要到 CA 申请证书，一般免费证书很少，需要交费。</li>
+</ul>
+<h2 id="为什么说HTTPS比HTTP安全-HTTPS是如何保证安全的？"><a href="#为什么说HTTPS比HTTP安全-HTTPS是如何保证安全的？" class="headerlink" title="为什么说HTTPS比HTTP安全? HTTPS是如何保证安全的？"></a>为什么说HTTPS比HTTP安全? HTTPS是如何保证安全的？</h2><p>因为 HTTPS 使用了 SSL 对内容使用了加密处理，从而保证了传输安全。可以防止数据在传输过程中被监听和被窃取，从而确认网站的真实性。</p>
+<h2 id="用了-HTTPS-就一定安全吗？"><a href="#用了-HTTPS-就一定安全吗？" class="headerlink" title="用了 HTTPS 就一定安全吗？"></a>用了 HTTPS 就一定安全吗？</h2><p>不一定，因为 HTTPS 保证的只是传输过程的安全。但本地的安全属于另一安全范畴，应对的措施有安装杀毒软件、反木马、浏览器升级修复漏洞等。</p>
+<h2 id="如何理解-UDP-和-TCP-区别-应用场景"><a href="#如何理解-UDP-和-TCP-区别-应用场景" class="headerlink" title="如何理解 UDP 和 TCP? 区别? 应用场景?"></a>如何理解 UDP 和 TCP? 区别? 应用场景?</h2><p>UDP 是用户数据包协议，是一个简单的「面向数据报的通信协议」，即对应用层交下来的报文，不合并，不拆分，只是在其上面加上首部后就交给了下面的网络层。<br>TCP 是传输控制协议，是一种可靠的、「面向字节流的通信协议」，把上面应用层交下来的数据看成无结构的字节流来发送。</p>
+<h3 id="区别-1"><a href="#区别-1" class="headerlink" title="区别"></a>区别</h3><table border="1px solid blackstyle" style="border-collapse: collapse;">
+    <tr>
+        <th></th>
+        <th>TCP</th>
+        <th>UDP</th>
+    </tr>
+    <tr>
+        <td>可靠性</td>
+        <td>可靠</td>
+        <td>不可靠</td>
+    </tr>
+    <tr>
+        <td>连接性</td>
+        <td>面向连接</td>
+        <td>无连接</td>
+    </tr>
+    <tr>
+        <td>报文</td>
+        <td>面向字节流</td>
+        <td>面向报文</td>
+    </tr>
+    <tr>
+        <td>效率</td>
+        <td>传输效率低</td>
+        <td>传输效率高</td>
+    </tr>
+    <tr>
+        <td>双共性</td>
+        <td>全双工</td>
+        <td>一对一、一对多、多对一、多对多</td>
+    </tr>
+    <tr>
+        <td>流量控制</td>
+        <td>滑动窗口</td>
+        <td>无</td>
+    </tr>
+    <tr>
+        <td>拥塞控制</td>
+        <td>慢开始、拥塞避免、快重传、快恢复</td>
+        <td>无</td>
+    </tr>
+    <tr>
+        <td>传输效率</td>
+        <td>慢</td>
+        <td>快</td>
+    </tr>
+</table>
+
+<p>TCP 是面向连接的协议，建立连接3次握手、断开连接四次挥手，UDP是面向无连接，数据传输前后不连接连接，发送端只负责将数据发送到网络，接收端从消息队列读取。<br>TCP 提供可靠的服务，传输过程采用流量控制、编号与确认、计时器等手段确保数据无差错，不丢失。UDP 则尽可能传递数据，但不保证传递交付给对方。<br>TCP 面向字节流，将应用层报文看成一串无结构的字节流，分解为多个TCP报文段传输后，在目的站重新装配。UDP协议面向报文，不拆分应用层报文，只保留报文边界，一次发送一个报文，接收方去除报文首部后，原封不动将报文交给上层应用。<br>TCP 只能点对点全双工通信。UDP 支持一对一、一对多、多对一和多对多的交互通信。</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p><img src="/images/tcp%E4%B8%8Eudp%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF.jpg" alt="tcp与udp的应用场景"></p>
+<h3 id="http1-0-1-1-2-0的区别"><a href="#http1-0-1-1-2-0的区别" class="headerlink" title="http1.0 1.1 2.0的区别"></a>http1.0 1.1 2.0的区别</h3><ol>
+<li>HTTP1.0：默认不支持长连接，需要设置keep-alive参数指定，缓存有一定的缺陷。</li>
+<li>HTTP1.1：默认长连接(keep-alive)，http请求可以复用Tcp连接，但同一时间只能对应一个http请求，也就是一个Tcp中http请求时串行的，还对缓存进行了优化。</li>
+<li>HTTP2.0：采用二进制格式而非文本格式；能实现多路复用，一个Tcp中多个http请求是并行的；可以将报头数据进行压缩，提高了传输速度；在请求数据时，服务器能主动将一些资源“推送”到客户端中。</li>
+</ol>
+<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><ul>
+<li>100 - 客户端应继续其请求</li>
+<li>101 - 切换协议</li>
+<li>200 - 请求成功</li>
+<li>201 - 请求成功并创建了新的资源</li>
+<li>202 - 已经接受了请求，但还没有处理完成</li>
+<li>203 - 非授权信息。</li>
+<li>204 - 服务器处理成功，但未返回内容。</li>
+<li>205 - 重置内容（清除表单内容）</li>
+<li>206 - 部分内容（处理了部分GET请求）</li>
+<li>301 - 永久重定向（强制get）</li>
+<li>302 - 临时重定向（强制get）</li>
+<li>307 - 临时重定向（说了是GET请求的）</li>
+<li>400 - 请求错误。</li>
+<li>401 - 请求身份验证。（未授权）</li>
+<li>403 - 服务器拒绝请求。</li>
+<li>404 - 服务器没找到资源。</li>
+<li>408 - 超时</li>
+<li>500 - 服务器错误</li>
+<li>501 - 服务器不支持请求</li>
+<li>502 - 网关错误</li>
+<li>504 - 网关超时</li>
+</ul>
+<h2 id="说一下-GET-和-POST-的区别？"><a href="#说一下-GET-和-POST-的区别？" class="headerlink" title="说一下 GET 和 POST 的区别？"></a>说一下 GET 和 POST 的区别？</h2><ol>
+<li>GET参数通过URL传递(以?分隔，参数之间以&amp;相连)，POST放在Request body中。</li>
+<li>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。</li>
+<li>GET请求的数据有大小限制，因为浏览器对url的长度有限制，而POST没有。</li>
+<li>GET请求会被浏览器缓存，而POST需要手动设置。</li>
+<li>GET一般用于查询，POST一般用于提交对信息修改的操作。</li>
+<li>GET在浏览器回退不需要请求，而POST会再次提交请求。</li>
+</ol>
+<h2 id="浏览器从输入url到渲染页面，发生了什么？"><a href="#浏览器从输入url到渲染页面，发生了什么？" class="headerlink" title="浏览器从输入url到渲染页面，发生了什么？"></a>浏览器从输入url到渲染页面，发生了什么？</h2><ol>
+<li>缓存查找<ol>
+<li>浏览器缓存：浏览器会记录DNS一段时间，因此，只是第一个地方解析DNS请求；</li>
+<li>操作系统缓存:如果在浏览器缓存中不包含这个记录，则会使系统调用操作系统， 获取操作系统的记录(保存最近的DNS查询缓存)</li>
+<li>路由器缓存：如果上述两个步骤均不能成功获取DNS记录，继续搜索路由器缓存；</li>
+<li>ISP缓存：若上述均失败，继续向ISP搜索</li>
+</ol>
+</li>
+<li>DNS域名解析</li>
+<li>建立TCP连接(三次握手)</li>
+<li>发送HTTP请求，服务器处理请求，返回响应结果</li>
+<li>浏览器解析渲染页面<ol>
+<li>解析html，构建DOM树</li>
+<li>解析css，构建CSS树</li>
+<li>合并DOM树和CSS规则，生成render树</li>
+<li>布局render树(Layout&#x2F;reflow)，负责各元素尺寸、位置的计算（样式计算）</li>
+<li>绘制render树（paint），绘制页面像素信息</li>
+</ol>
+</li>
+<li>断开连接(四次挥手)</li>
+</ol>
+<h2 id="浏览器渲染机制（浏览器绘制过程）"><a href="#浏览器渲染机制（浏览器绘制过程）" class="headerlink" title="浏览器渲染机制（浏览器绘制过程）"></a>浏览器渲染机制（浏览器绘制过程）</h2><ul>
+<li>将 HTML 解析构建成 DOM 树</li>
+<li>将 CSS 解析构建成 CSS 树（CSSOM）</li>
+<li>合并 DOM 树和 CSS 树，生成一棵渲染树 (render)</li>
+<li>生成布局（Layout），计算出每个节点在屏幕中的位置</li>
+<li>显示（paint）在屏幕上</li>
+</ul>
+<p>重新渲染就是重复之前的第四步(重新生成布局)+第五步(重新绘制)或者只有第五步(重新绘制)。</p>
+<h2 id="什么是重绘与重排？有什么区别？"><a href="#什么是重绘与重排？有什么区别？" class="headerlink" title="什么是重绘与重排？有什么区别？"></a>什么是重绘与重排？有什么区别？</h2><p>重排(回流): 当 DOM 的变化影响了元素的几何信息 (DOM 对象的位置和尺寸大小)，导致浏览器需要重新计算时，这个过程叫做重排。表现为重新生成布局，重新排列元素。</p>
+<p>重绘：当一个元素的外观发生改变，但没有改变布局,重新把元素外观绘制出来的过程，叫做重绘。表现为某些元素的外观被改变。</p>
+<p>触发：改变元素的color、background、box-shadow等属性 </p>
+<p>『重排』必定会发生『重绘』，『重绘』不一定会引发『重排』。重排成本高于重绘。</p>
+<p>改变父节点中的子节点也可能导致父节点发生重排。</p>
+<h2 id="如何触发重排和重绘？"><a href="#如何触发重排和重绘？" class="headerlink" title="如何触发重排和重绘？"></a>如何触发重排和重绘？</h2><p>任何改变用来构建渲染树的信息都会导致一次重排或重绘：</p>
+<ul>
+<li>添加、删除、更新DOM节点</li>
+<li>通过 display: none 隐藏一个DOM节点-触发重排和重绘</li>
+<li>通过 visibility: hidden 隐藏一个DOM节点-只触发重绘，因为没有几何变化</li>
+<li>移动或者给页面中的DOM节点添加动画</li>
+<li>调整样式属性(元素尺寸改变——边距、填充、边框、宽度和高度 )</li>
+<li>用户行为，例如调整窗口大小(resize事件)，改变字号，或者滚动。</li>
+<li>内容变化，比如用户在 input 框中输入文字</li>
+<li>计算 offsetWidth 和 offsetHeight 属性</li>
+</ul>
+<h2 id="如何避免重绘或者重排？"><a href="#如何避免重绘或者重排？" class="headerlink" title="如何避免重绘或者重排？"></a>如何避免重绘或者重排？</h2><ol>
+<li>集中改变样式，不要一条一条地修改 DOM 的样式。</li>
+<li>不要把 DOM 结点的属性值放在循环里当成循环里的变量。</li>
+<li>为动画的 HTML 元件使用 fixed 或 absoult 的 position，那么修改他们的 CSS 是不会 reflow 的。</li>
+<li>不使用 table 布局。因为可能很小的一个小改动会造成整个 table 的重新布局。</li>
+<li>把 DOM 离线后修改。如：使用 documentFragment 对象在内存里操作 DOM</li>
+<li>尽量只修改position：absolute或fixed元素，对其他元素影响不大</li>
+<li>动画开始GPU加速，translate使用3D变化。transform 不重绘、不回流，是因为transform属于合成属性，对合成属性进行transition&#x2F;animate动画时，将会创建一个合成层。这使得动画元素在一个独立的层中进行渲染。当元素的内容没有发生改变，就没有必要进行重绘。浏览器会通过重新复合来创建动画帧。</li>
+<li>提升为合成层<br>将元素提升为合成层有以下优点：<ul>
+<li>合成层的位图，会交由 GPU 合成，比 CPU 处理要快</li>
+<li>当需要 repaint 时，只需要 repaint 本身，不会影响到其他的层</li>
+<li>对于 transform 和 opacity 效果，不会触发 layout 和 paint<br>提升合成层的最好方式是使用 CSS 的 will-change 属性：<br>  #target {<br>will-change: transform;<br>  }</li>
+</ul>
+</li>
+</ol>
+<h2 id="浏览器乱码的原因是什么？如何解决？"><a href="#浏览器乱码的原因是什么？如何解决？" class="headerlink" title="浏览器乱码的原因是什么？如何解决？"></a>浏览器乱码的原因是什么？如何解决？</h2><p>产生乱码的原因：网页中的编码和我们编写代码文字使用的编码不同，或者和数据库导出的文字编码不同；还有就是浏览器检测不到网页的编码，也会出现乱码的情况。</p>
+<ul>
+<li>网页是gbk，而代码中的文字是utf-8，反之也会出现乱码；</li>
+<li>网页编码是gbk，而数据库导出的文字是utf-8，这样也会造成乱码；</li>
+<li>浏览器不能自动检测网页编码，造成网页乱码。</li>
+</ul>
+<p>解决办法：如果是编写问题，则在编辑HTML网页时自己设置编码格式；如果是数据库编码问题，则在查询数据库时设置相应的编码格式；如果是浏览器自身问题，则在转换编码的菜单中进行转换。</p>
+<ul>
+<li>编辑HTML网页时自己设置编码格式；</li>
+<li>如果网页编码是gbk，而数据库数据编码是UTF-8，则查询数据库数据时对程序转码；</li>
+<li>如果浏览器浏览时候出现网页乱码，在浏览器中找到转换编码的菜单进行转换。</li>
+</ul>
+<h2 id="html-规范中为什么要求引用资源不加协议头http或者https？"><a href="#html-规范中为什么要求引用资源不加协议头http或者https？" class="headerlink" title="html 规范中为什么要求引用资源不加协议头http或者https？"></a>html 规范中为什么要求引用资源不加协议头http或者https？</h2><p>如果使用 http 或 https 协议来浏览，那么网页中的资源也只能通过相应协议来引用，否则就会出现警告信息，而且不同浏览器的警告信息展现形式不同。为了解决这个问题，我们可以省略 URL 的协议声明，无论是使用哪一个协议访问页面，浏览器都会以相同的协议请求页面中的资源，避免弹出警告信息，同时还可以节省5字节的数据量。</p>
+<h2 id="为什么css放在顶部而js写在后面"><a href="#为什么css放在顶部而js写在后面" class="headerlink" title="为什么css放在顶部而js写在后面"></a>为什么css放在顶部而js写在后面</h2><ol>
+<li>浏览器预先加载css后，可以不必等待HTML加载完毕就可以渲染页面了。</li>
+<li>HTML渲染是一边解析DOM一边渲染，并不会等到完全加载完才渲染页面。</li>
+<li>js写在尾部，主要是：一方面是js主要对事件进行处理，很多操作都是在页面渲染后才执行的。另一方面能节省加载时间，提高用户的体验。</li>
+</ol>
+<p>但是随着JS技术的发展，JS也开始承担页面渲染的工作。比如我们的UI其实可以分被对待，把渲染页面的js放在前面，时间处理的js放在后面</p>
+<h2 id="常见的浏览器端的存储技术有哪些？"><a href="#常见的浏览器端的存储技术有哪些？" class="headerlink" title="常见的浏览器端的存储技术有哪些？"></a>常见的浏览器端的存储技术有哪些？</h2><p>浏览器常见的存储技术有 cookie、localStorage 和 sessionStorage。</p>
+<p>还有两种存储技术用于大规模数据存储，webSQL（已被废除）和 indexDB。</p>
+<p>IE 支持 userData 存储数据，但是基本很少使用到，除非有很强的浏览器兼容需求。</p>
+<h2 id="请描述一下-cookies，sessionStorage-和-localStorage-的区别？"><a href="#请描述一下-cookies，sessionStorage-和-localStorage-的区别？" class="headerlink" title="请描述一下 cookies，sessionStorage 和 localStorage 的区别？"></a>请描述一下 cookies，sessionStorage 和 localStorage 的区别？</h2><ul>
+<li>它们都存储在客户端，但 cookie 的数据会自动传递到服务器。（同源的http请求中携带）</li>
+<li>大小限制不同；cookie 数据大小不能超过4k；sessionStorage 和 localStorage 的存储比 cookie 大得多，可以达到5M。</li>
+<li>数据有效期不同；cookie 在过期时间之前一直有效，即使窗口和浏览器关闭；sessionStorage数据只在当前浏览器窗口有效，关闭了就会被销毁；而 localStorage 永久存储，即使关闭浏览器，也不会消失，除非主动删除数据。</li>
+</ul>
+<h2 id="token、cookie、session三者的理解"><a href="#token、cookie、session三者的理解" class="headerlink" title="token、cookie、session三者的理解"></a>token、cookie、session三者的理解</h2><p>1、token就是令牌，比如你授权(登录)一个程序时,他就是个依据,判断你是否已经授权该软件（最好的身份认证，安全性好，且是唯一的）<br>    用户身份的验证方式</p>
+<p>2、cookie是写在客户端一个txt文件，里面包括登录信息之类的，这样你下次在登录某个网站，就会自动调用cookie自动登录用户名<br>    服务器生成，发送到浏览器，浏览器会保存，下次请求再次发送给服务器（存放着登录信息）</p>
+<p>3、session是一类用来客户端和服务器之间保存状态的解决方案，会话完成被销毁。cookie中存放着sessionID，请求会发送这个id。sesion因为request对象而产生。<br>    服务器和客户端的一次会话过程</p>
+<h2 id="cookie与session区别"><a href="#cookie与session区别" class="headerlink" title="cookie与session区别"></a>cookie与session区别</h2><ol>
+<li>cookie 数据存放在客户端上，session 数据放在服务器上。</li>
+<li>cookie 不是很安全，别人可以分析存放在本地的 COOKIE 并进行 COOKIE 欺骗，考虑到安全应当使用 session。</li>
+<li>session 会在一定时间内保存在服务器上。当访问增多，会比较占用服务器的性能，考虑到减轻服务器性能方面，应当使用 COOKIE。</li>
+<li>单个 cookie 保存的数据不能超过4K，很多浏览器都限制一个站点最多保存20个 cookie。</li>
+</ol>
+<h2 id="session与token区别"><a href="#session与token区别" class="headerlink" title="session与token区别"></a>session与token区别</h2><ol>
+<li>session 只是存储了一些简单的用户信息，且 sessionID 是不可预测的，一种认证手段。只存在服务端，不能与其他的网站或App共享</li>
+<li>token 提供认证和授权，认证针对用户，授权针对App，目的是让某APP有权访问某用户的信息。Token是唯一的，token不能转移到其他的App，也不能转到其他用户上。（适用于App）</li>
+<li>session的状态是存在服务器端的，客户端只存在session id， Token状态是存储在客户端的</li>
+</ol>
+<h2 id="TCP-三次握手"><a href="#TCP-三次握手" class="headerlink" title="TCP 三次握手"></a>TCP 三次握手</h2><ol>
+<li>客户端发送 syn 包到服务器，等待服务器确认接收。</li>
+<li>服务器确认接收 syn 包并确认客户的 syn，并发送一个 syn+ack 的包给客户端。</li>
+<li>客户端确认接收服务器的 syn+ack 包，并向服务器发送确认包 ack，二者相互建立联系后，完成 tcp 三次握手。</li>
+</ol>
+<h2 id="TCP-四次挥手"><a href="#TCP-四次挥手" class="headerlink" title="TCP 四次挥手"></a>TCP 四次挥手</h2><ol>
+<li>客户端发送一个 FIN 报文并指定一个序列号到服务器，等待服务端的确认，然后进入 FIN_WAIT1 状态。</li>
+<li>服务端收到 FIN 报文后，会发送一个 ACK 报文给客户端，表明已经收到客户端的报文了，然后进入 CLOSE_WAIT 状态</li>
+<li>服务端发送一个 FIN 报文并指定一个序列号，等待客户端的确认，然后进入 LAST_ACK 状态。</li>
+<li>客户端收到 FIN 报文后，会发送一个 ACK 报文给服务端，然后进入 TIME_WAIT 状态。过一阵子后进入 CLOSED 状态，服务端收到 ACK 报文之后，就处于关闭连接了，处于 CLOSED 状态</li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-license">
+      <strong>本文作者：</strong>
+      <a href="ran-up.github.io" style="color: #E541E5">冉星</a>
+    </li>
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://ran-up.github.io/2022/10/27/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/%E7%BD%91%E7%BB%9C/" title="网络" target="_blank" rel="external"
+        style="color: #E541E5">http://ran-up.github.io/2022/10/27/前端面试集锦/网络/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh"
+        target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body" style="background-color:#b7b4f0;">
+    <figure class="media">
+      <div class="media-left">
+        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg"
+            class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading">
+          <a href="" target="_blank">
+            <!-- author 内容 -->
+            <span class="text-dark">冉星</span>
+            <!-- author_title 内容 -->
+            <small class="ml-1x">Web Developer，rising star</small>
+          </a>
+        </h3>
+        <!-- 个人简介内容 -->
+        <div>个人简介：脆弱的种子在温室也会死亡，坚强的种子，在沙漠也能发芽。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+    
+    <ul class="pager pull-left">
+      
+      <li class="prev">
+        <a href="/2022/10/28/CSS/%E7%BD%91%E4%B8%8A%E8%A7%86%E9%A2%91%E4%B8%8D%E8%AF%B4%E7%9A%84css%E5%8F%98%E9%87%8F%E8%AE%BE%E7%BD%AE/" title="网上视频不说的css变量设置"><i
+            class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      </li>
+      
+      
+      <li class="next">
+        <a href="/2022/10/26/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%9B%86%E9%94%A6/%E6%89%8B%E5%86%99%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D/"
+          title="手写数组去重"><span>下一篇&nbsp;&nbsp;</span><i
+            class="icon icon-angle-right" aria-hidden="true"></i></a>
+      </li>
+      
+      
+      <!-- 下一篇 文件目录 -->
+      <li class="toggle-toc">
+        <a class="toggle-btn " data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录"
+          role="button">
+          <!-- [ 和 文字目录文字 -->
+          <span style="color:#6699FF;">[&nbsp;</span><span style="color:#6699FF;">文章目录</span>
+          <!-- 钩子 图标 -->
+          <i class="text-collapsed icon icon-anchor"></i>
+          <!-- x 图标 -->
+          <i class="text-in icon icon-close"></i>
+          <!-- ] -->
+          <span style="color:#6699FF;">]</span>
+        </a>
+      </li>
+      
+    </ul>
+    
+    
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal"
+      data-target="#donateModal"><span>赏</span></button>
+    <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+    
+
+    <div class="bar-right">
+      
+      <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter"
+        data-mobile-sites="weibo,qq,qzone"></div>
+      
+    </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/busuanzi/2.3.0/bsz.pure.mini.min.js"></script> -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+    
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/ran-up" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="https://juejin.cn/user/3769553921772376" target="_blank" title="Juejin" data-toggle=tooltip data-placement=top><i class="icon icon-juejin"></i></a></li>
+        
+        <li><a href="https://blog.csdn.net/m0_57533638?spm=1011.2415.3001.5343" target="_blank" title="Coding" data-toggle=tooltip data-placement=top><i class="icon icon-coding"></i></a></li>
+        
+        <li><a href="https://gitee.com/ran-xing" target="_blank" title="Gitee" data-toggle=tooltip data-placement=top><i class="icon icon-gitee"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+        
+        &copy; 2025 ranup
+        
+        <div class="publishby">
+            <span id="sitetime"></span> <br />
+            <span id="busuanzi_container_site_pv">
+                点击<span id="busuanzi_value_site_pv" style="font-family:Courier"></span>次，
+                访客<span id="busuanzi_value_site_uv" style="font-family:Courier"></span>人
+            </span>
+        </div>
+        <!-- <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div> -->
+    </div>
+</footer>
+<script>
+    function siteTime() {
+        window.setTimeout("siteTime()", 1000);
+        var today = new Date();
+        var todayYear = today.getFullYear();
+        var todayMonth = today.getMonth() + 1;
+        var todayDate = today.getDate();
+        var todayHour = today.getHours();
+        var todayMinute = today.getMinutes();
+        var todaySecond = today.getSeconds();
+
+        var seconds = 1000;
+        var minutes = seconds * 60;
+        var hours = minutes * 60;
+        var days = hours * 24;
+        var years = days * 365;
+
+        // Date.UTC() -- 返回距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+
+        var t1 = Date.UTC(2022, 10, 11, 15, 06, 05); //t1为建站时间
+        var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+        var diff = t2 - t1;
+
+        var diffYears = Math.floor(diff / years);
+        var diffDays = Math.floor((diff / days) - diffYears * 365);
+
+        var arr = (todayYear % 4 == 0 && todayYear % 100 != 0) || todayYear % 400 == 0 ? [31, 29, 31, 30, 31, 30,
+            31, 31, 30, 31, 30, 31
+        ] : [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        var index = 0,
+            diffDay = diffDays
+        while (diffDay > 0) {
+            diffDay = diffDay - arr[index]
+            if (diffDay > 0) {
+                index++
+            } else {
+                var d = diffDay + arr[index]
+                index + 1
+            }
+        }
+
+        var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+        var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
+        var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes *
+            minutes) / seconds);
+
+        var y = diffYears.toString()
+        var h = diffHours.toString().padStart(2, '0')
+        var m = diffMinutes.toString().padStart(2, '0')
+        var s = diffSeconds.toString().padStart(2, '0')
+
+        document.getElementById("sitetime").innerHTML = `已运行：${y}年${index}月${d}日 ${h}时${m}分${s}秒`
+        // 因为建站时间还没有一年，就将之注释掉了。需要的可以取消
+    }
+    siteTime();
+</script>
+    <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+   window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: 'VekdeC9mwtmMA0UxgTtMvRzc-gzGzoHsz',
+    appKey: 'I18Ljx77J3gdqvck2pluUaUb',
+    placeholder: '欢迎探讨',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: true
+  });
+  </script>
+     
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+
+<!-- 回到顶部 -->
+<style type="text/css">
+   #go-top {
+      display: none;
+      position: fixed;
+      right: 30px;
+      bottom: 60px;
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: #6699FF;
+      cursor: pointer;
+   }
+
+   #go-top:after {
+      content: " ";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      border-top: 2px solid #fff;
+      border-right: 2px solid #fff;
+      transform: translate(-50%, -30%) rotate(-45deg);
+   }
+
+   #go-top:hover {
+      background-color: #6666FF;
+   }
+</style>
+
+<div id="go-top"></div>
+
+<script>
+   $(function () {
+      var top = $("#go-top");
+      $(window).scroll(function () {
+         ($(window).scrollTop() > 300) ? top.show(300): top.hide(200);
+         $("#go-top").click(function () {
+            $('body,html').animate({
+               scrollTop: 0
+            });
+            return false();
+         })
+      });
+   });
+</script>
+  </body>
+
+  </html>
