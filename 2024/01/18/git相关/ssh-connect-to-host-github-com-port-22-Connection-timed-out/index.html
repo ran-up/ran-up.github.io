@@ -423,7 +423,7 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">$ ssh -T git@github.<span class="property">com</span></span><br><span class="line"><span class="title class_">Hi</span> <span class="variable constant_">DJCKING</span>! <span class="title class_">You</span><span class="string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span></span><br></pre></td></tr></table></figure>
 
 <p>最后别忘记去 <code>~/.ssh/id_rsa.pub</code> 中把内容粘贴到 gitee 和 github 的 ssh 中。</p>
-<h2 id="新生成-ssh"><a href="#新生成-ssh" class="headerlink" title="新生成 ssh"></a>新生成 ssh</h2><p>输入：<code>ssh-keygen -t rsa -C &quot;3xxxx73@qq.com&quot;</code> 其中的 “<a href="mailto:&#x33;&#120;&#120;&#120;&#x78;&#55;&#x33;&#64;&#113;&#113;&#46;&#x63;&#111;&#109;">&#x33;&#120;&#120;&#120;&#x78;&#55;&#x33;&#64;&#113;&#113;&#46;&#x63;&#111;&#109;</a>“ 是你在 gitee 或 github 中的邮箱。之后一直回车（Enter）即可。</p>
+<h2 id="新生成-ssh"><a href="#新生成-ssh" class="headerlink" title="新生成 ssh"></a>新生成 ssh</h2><p>输入：<code>ssh-keygen -t rsa -C &quot;3xxxx73@qq.com&quot;</code> 其中的 “<a href="mailto:&#x33;&#120;&#x78;&#120;&#x78;&#55;&#51;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#x6d;">&#x33;&#120;&#x78;&#120;&#x78;&#55;&#51;&#64;&#x71;&#113;&#x2e;&#99;&#x6f;&#x6d;</a>“ 是你在 gitee 或 github 中的邮箱。之后一直回车（Enter）即可。</p>
 <p>检测：<code>ssh -v git@github.com</code>、<code>ssh -v git@gitee.com</code>，只要有 successfully 字样就表示成功了。</p>
 <p>如果报：<code>ssh: connect to host github.com port 22: Connection timed out</code> 就是上面的解决方案了。</p>
 
